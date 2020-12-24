@@ -1,0 +1,21 @@
+<h2>プロフィール編集<h2>
+  <%= form_with model:@user,url:user_path(@user), local:true do |f| %>
+  <table>
+    <tr>
+      <td><%= f.label :"プロフィール画像" %></td>
+      <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40,format: 'jpeg', class: "image-circle",fallback: "no_image.jpg" %>
+      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.label :"名前" %></td>
+      <td><%= f.text_field :name,autofocus: true %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :"自己紹介文" %></td>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr><td><%= f.submit "変更を保存する" %></td></tr>
+  </table>
+<% end %>
+ 

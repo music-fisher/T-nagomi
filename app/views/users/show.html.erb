@@ -3,3 +3,7 @@
 </p>
 <h1>MyPage</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+<% if @user.id == current_user.id %>
+    <%= link_to "プロフィール編集",edit_user_path(@user) %>
+    <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
+<% end %>
