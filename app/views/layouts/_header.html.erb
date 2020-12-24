@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <nav class="navbar navbar-default">
+        <ul>
+          <!--ログインしているとき-->
+          <% if user_signed_in? %>
+            <li><%= link_to "Top",root_path %></li>
+            <!--リンク先は後ほど変更-->
+            <li><%= link_to "Teas","#"%></li>
+            <li><%= link_to "Users",users_path %></li>
+            <!--リンク先変更予定-->
+            <li><%= link_to "NewPost","#" %></li>
+            <li><%= link_to "MyPage",user_path(user) %></li>
+            <li><%= link_to "Logout",destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Top",root_path %></li>
+            <li><%= link_to "About",homes_about_path %></li>
+            <li><%= link_to "Sign_up",new_user_registration_path %></li>
+            <li><%= link_to "Sign_in",new_user_session_path %></li>
+          <% end %>
+        </ul>
+    </nav>
+    
+  </div>
+</div>
