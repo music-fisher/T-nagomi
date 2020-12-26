@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update,:index]
   resources :posts
   resources :tags do
-    get 'posts', to:"posts#seach"
+    get 'posts', to:"posts#search"
   end
 end
 

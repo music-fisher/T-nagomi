@@ -1,1 +1,14 @@
-<h2><%= @tags.tag_name %>タグのついた投稿一覧</h2>
+<h2><%= @tag.tag_name %>タグのついた投稿一覧</h2>
+<!--タグリスト-->
+<% @tag_list.each do |list| %>
+  <%= link_to list.tag_name,tag_posts_path(post_tag_id: list.id) %>
+<% end %>
+
+<!--投稿一覧-->
+<% @posts.each do |post| %>
+  <%= link_to post_path(post) do %>
+    <%= attachment_image_tag post, :post_image, :fill, 10, 10, format: 'jpeg',fallback: 'no_image.jpg' %>
+  <% end %>
+  <%= post.title %>
+  <%= post.body %>
+<% end %>

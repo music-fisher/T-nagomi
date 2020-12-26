@@ -26,7 +26,9 @@ class PostsController < ApplicationController
   def update
   end
   def search
-    @tags = Tag.all
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])#クリックしたタグの情報取得
+    @posts = @tag.posts.all#タグに紐づく投稿
   end
   
   private
