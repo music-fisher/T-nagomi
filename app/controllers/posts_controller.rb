@@ -13,18 +13,20 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
+    tag_list = params[:post][:tag_name].split(",")
+    if @post.save
+        @post.save_post(tag_list)
     redirect_to post_path(@post)
-    tag_list = params[:tag_name].split(",")
-  if @post.save
-      @post.save_post(tag_list)
-  end
+    end
     
   end
   
   def edit
   end
   def update
+  end
+  def search
+    @tags = Tag.all
   end
   
   private

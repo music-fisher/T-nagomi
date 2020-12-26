@@ -2,7 +2,7 @@
 <%= attachment_image_tag @post, :post_image, :fill, 40, 40, format: 'jpeg',fallback: "no_image.jpg",class: "col-md-4" %>
 <%= @post.body %>
 <%= @post.kind %>
-<%= @post_tags.each do |tag| %>
-    <%= link_to tag.tag_name,tag_posts_path(tag_id :tag.id) %>
+<% @post_tags.each do |tag| %>
+    <%= link_to tag.tag_name,tag_posts_path(tag_id: tag.id) %>
 <% end %>
 
