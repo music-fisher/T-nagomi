@@ -10,20 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_100242) do
+ActiveRecord::Schema.define(version: 2020_12_22_114143) do
 
   create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.string "comment_content"
+    t.integer "user_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_100242) do
     t.text "body"
     t.integer "kind"
     t.string "post_image_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_12_23_100242) do
   end
 
   create_table "tagmaps", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,9 +72,9 @@ ActiveRecord::Schema.define(version: 2020_12_23_100242) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "profile_image_id"
+    t.string "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -2,14 +2,15 @@
 <div class="container">
   <div class="row">
     <%= form_with model: @post, local: true do |f|  %>
-    
+
       <%= attachment_image_tag @post, :post_image, :fill, 40, 40, format: 'jpeg',fallback: "no_image.jpg",class: "col-md-4" %>
-      <%#= f.attachment_field :post, placeholder: "投稿画像" %>
+      <%= f.attachment_field :post_image, placeholder: "投稿画像" %>
       <%= f.label :"タイトル",class: "col-md-4" %>
       <%= f.text_field :title,class: "col-md-4" %>
       <%= f.label :"お茶の種類",class: "col-md-4" %>
-      <%#= f.select :kind, ["抹茶", "玉露", "煎茶", "番茶", "その他"]　%>
+      <%= f.select :kind, ["抹茶", "玉露", "煎茶", "番茶", "その他"] %>
       <%= f.label :"タグ",class: "col-md-4" %>
+      <%= f.text_field :tag_name,class: "col-md-4" %>
       <%= f.label :"本文",class: "col-md-4" %>
       <%= f.text_area :body,placeholder:"800字以内",class: "col-md-4" %>
   <div class="row">
