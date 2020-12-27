@@ -1,11 +1,19 @@
 <h1>Teas 投稿一覧</h1>
-<% @posts.each do |post| %>
-  <%= attachment_image_tag post, :post_image, :fill, 10, 10, format: 'jpeg',fallback: "no_image.jpg" %>
-  <!--user/showに遷移したい-->
-  <%= link_to post.user.name,user_path(post.user_id) %>
-  <%= link_to post.title,post_path(post) %>
-  <div class="row" >
-  <%= render 'posts/bookmark',post: post %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'posts/tag_list',tag_list: @tag_list %>
+    </div>
+      <div class="col-md-9">
+        <% @posts.each do |post| %>
+          <%= attachment_image_tag post, :post_image, :fill, 10, 10, format: 'jpeg',fallback: "no_image.jpg" %>
+          <%= link_to post.user.name,user_path(post.user_id) %>
+          <%= link_to post.title,post_path(post) %>
+          <% post.tags.each do |tag| %>
+            <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+          <% end %>
+          <%= render 'posts/bookmark',post: post %>
+        <% end %>
+      </div>
   </div>
-<% end %>
-
+</div>
