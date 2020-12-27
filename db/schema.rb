@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_12_22_114143) do
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "post_id"], name: "index_bookmarks_on_user_id_and_post_id", unique: true
   end
 
   create_table "comments", force: :cascade do |t|

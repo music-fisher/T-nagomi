@@ -5,6 +5,10 @@ class PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.all.includes(:user)
+  end
+  def bookmarks
+    @posts = current_user.bookmark_posts.includes(:user)
   end
 
   def new

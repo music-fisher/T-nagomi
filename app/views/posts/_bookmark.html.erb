@@ -1,0 +1,6 @@
+<p>Bookmark</p>
+<% if post.bookmark_by?(current_user) %>
+  <%= link_to 'ブックマークを解除する',post_bookmarks_path(post.id),method: :delete %>
+<% else %>
+  <%= link_to 'ブックマークする',post_bookmarks_path(post.id),method: :post %>
+<% end %>
