@@ -1,0 +1,23 @@
+<% posts.each do |post| %>
+  <div class="row">
+    <!--userの画像表示できてる？？？円形にしたい-->
+    <%= attachment_image_tag user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %>
+    <%= link_to post.user.name,user_path(post.user.id) %>
+  </div>
+  <div class="row">
+    <%= link_to post_path(post) do %>
+      <%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpeg',fallback: 'noimage.jpg' %>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= link_to post.title,post_path(post) %>
+  </div>
+  <div class="row">
+    <% post.tags.each do |tag| %>
+      <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+    <% end %>
+  </div>
+  <div class="row">
+   <%= render 'posts/bookmark',post: post %>
+  </div>
+<% end %>

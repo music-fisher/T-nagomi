@@ -1,2 +1,41 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>新規投稿</h1>
+<div class="container">
+  <!--エラーメッセージ -->
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました。
+    <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <%= form_with model: @post, local: true do |f|  %>
+    <div class="col-md-4">
+
+      <%= attachment_image_tag @post, :post_image, :fill, 40, 40, format: 'jpeg',fallback: "noimage.jpg" %>
+      <%= f.attachment_field :post_image, placeholder: "投稿画像" %>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <%= f.label :"タイトル",class: "col-md-4" %>
+        <%= f.text_field :title,class: "col-md-4" %>
+      </div>
+      <div class="row">
+        <%= f.label :"お茶の種類",class: "col-md-4" %>
+        <%= f.select :kind, ["抹茶", "玉露", "煎茶", "番茶", "その他"],prompt: "お茶の種類を選択してください",class: "col-md-4" %>
+      </div>
+      <div class="row">
+        <%= f.label :"タグ",class: "col-md-4" %>
+        <%= f.text_field :tag_name,placeholder:"例）豆知識,お悩み,日常,相談",class: "col-md-4" %>
+        ※複数登録する際は「,」または「、」で区切ってください。
+      </div>
+      <div class="row">
+        <%= f.label :"本文",class: "col-md-4" %>
+        <%= f.text_area :body,placeholder:"800字以内",class: "col-md-4" %>
+      </div>  
+      <div class="row">
+          <%= f.submit "投稿する",class: "col-md-2"%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

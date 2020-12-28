@@ -5,12 +5,10 @@
           <!--ログインしているとき-->
           <% if user_signed_in? %>
             <li><%= link_to "Top",root_path %></li>
-            <!--リンク先は後ほど変更-->
-            <li><%= link_to "Teas","#"%></li>
+            <li><%= link_to "Teas",posts_path%></li>
             <li><%= link_to "Users",users_path %></li>
-            <!--リンク先変更予定-->
-            <li><%= link_to "NewPost","#" %></li>
-            <li><%= link_to "MyPage",user_path(user) %></li>
+            <li><%= link_to "NewPost",new_post_path %></li>
+            <li><%= link_to "MyPage",user_path(current_user) %></li>
             <li><%= link_to "Logout",destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><%= link_to "Top",root_path %></li>
@@ -20,6 +18,6 @@
           <% end %>
         </ul>
     </nav>
-    
+
   </div>
 </div>
