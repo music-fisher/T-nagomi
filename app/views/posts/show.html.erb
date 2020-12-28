@@ -1,2 +1,30 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+    <h1><%= @post.title %></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <%= attachment_image_tag @post, :post_image, :fill, 250, 250, format: 'jpeg',fallback: "noimage.jpg",class: "img-rounded" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg',fallback: "noimage_user.jpg",class: "img-circle"  %>
+            <%= link_to @post.user.name,user_path(@post.user) %>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <%= @post.body %>
+            </div>
+            <div class="row">
+                お茶の種類：<%= @post.kind %>
+            </div>
+            <div class="row">
+                タグ：
+                <% @post_tags.each do |tag| %>
+                    <%= link_to tag.tag_name,tag_posts_path(tag_id: tag.id) %>
+                <% end %>
+            </div>
+             <%= render 'posts/bookmark',post: @post %>
+             <% if current_user.id == @post.user_id %>
+                 <%= link_to '編集する',edit_post_path(@post) %>
+                 <%= link_to '削除する',post_path(@post),method: :delete,data: {confirm: '削除しますか？'} %>
+             <% end %>
+        </div>
+    </div>
+</div>
+
