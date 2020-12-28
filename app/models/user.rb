@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :bookmark_posts, through: :bookmarks, source: :posts
+  has_many :bookmark_posts, through: :bookmarks, source: :post
   validates :name, presence: true
   validates :introduction, length: { maximum: 200 } 
   attachment :profile_image

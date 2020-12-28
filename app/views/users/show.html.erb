@@ -6,4 +6,5 @@
 <% if @user.id == current_user.id %>
     <%= link_to "プロフィール編集",edit_user_path(@user) %>
     <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
+    <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
 <% end %>
