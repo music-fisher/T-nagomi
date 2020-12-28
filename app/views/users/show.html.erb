@@ -1,10 +1,39 @@
 <p id = "notice">
  <%= notice %>
 </p>
-<h1>MyPage</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<% if @user.id == current_user.id %>
-    <%= link_to "プロフィール編集",edit_user_path(@user) %>
-    <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
-    <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
-<% end %>
+  <% if user_signed_in? && @user == current_user %>
+    <h1>MyPage</h1>
+  <% else %>
+    <h1>User Page</h1>
+  <% end %>  
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= attachment_image_tag @user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %>
+          <%= link_to @user.name,user_path(@user) %>
+          <%= @user.introduction %>
+      <% if user_signed_in? && @user == current_user %>
+          <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
+          <%= link_to "プロフィール編集",edit_user_path(@user) %>
+          <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
+      <% end %>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+      <% @posts.each do |post| %>
+        <%= link_to post_path(post) do %>
+          <%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpeg',fallback: 'noimage.jpg' %>
+        <% end %>
+      </div>
+      <div class="row">
+        <%= link_to post.title,post_path(post) %>
+      </div>
+      <div class="row">
+        <% post.tags.each do |tag| %>
+          <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>  
+  </div>
+</div>

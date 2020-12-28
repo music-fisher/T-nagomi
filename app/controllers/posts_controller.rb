@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    @posts = Post.all.includes(:user).page(params[:page]).per(9)
   end
 
   def index

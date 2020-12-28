@@ -1,1 +1,5 @@
 <h2>User一覧</h2>
+<% @users.each do |user| %>
+ <%= attachment_image_tag user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %>
+ <%= user.name %>
+<% end %>
