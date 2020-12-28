@@ -1,10 +1,15 @@
 class Post < ApplicationRecord
   belongs_to :user
-  attachment :post_image
-  enum kind: {抹茶: 0,玉露: 1, 煎茶: 2,番茶: 3, その他: 4}
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
   has_many :bookmarks,dependent: :destroy
+  
+  attachment :post_image
+  enum kind: {抹茶: 0,玉露: 1, 煎茶: 2,番茶: 3, その他: 4}
+  # バリデーション
+  validates :title, presence: true,length: { maximum: 20 } 
+  validates :body, presence: true,length: { maximum: 800 } 
+
 
   def save_post(savepost_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?

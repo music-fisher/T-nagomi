@@ -1,5 +1,12 @@
 <h1>新規投稿</h1>
 <div class="container">
+  <!--エラーメッセージ -->
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました。
+    <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+    <% end %>
+  <% end %>
   <div class="row">
     <%= form_with model: @post, local: true do |f|  %>
     <div class="col-md-4">

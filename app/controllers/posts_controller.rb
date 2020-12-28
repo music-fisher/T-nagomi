@@ -27,12 +27,23 @@ class PostsController < ApplicationController
         @post.save_post(tag_list)
     redirect_to post_path(@post)
     end
+    render :new
 
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
   def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    @user = @post.user.id
+    redirect_to user_path(@user)
+  end
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
   def search
     @tag_list = Tag.all
@@ -43,6 +54,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :kind, :post_image)
+    params.require(:post).permit(:title, :body, :kind, :post_image, :user_id)
   end
 end
