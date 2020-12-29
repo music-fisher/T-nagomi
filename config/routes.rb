@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   get '/mypage' => 'users#mypage'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show, :edit, :update,:index]
+  resources :users, only: [:show, :edit, :update,:index] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+  
   resources :posts, shallow: true do
     resource :bookmarks, only: [:create, :destroy]
     get :bookmarks, on: :collection
