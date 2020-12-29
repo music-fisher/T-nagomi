@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :posts, shallow: true do
     resource :bookmarks, only: [:create, :destroy]
     get :bookmarks, on: :collection
+    resource :likes, only: [:create, :destroy]
   end
   resources :tags do
     get 'posts', to:"posts#search"

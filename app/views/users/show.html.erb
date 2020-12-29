@@ -12,6 +12,8 @@
       <%= attachment_image_tag @user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %>
           <%= link_to @user.name,user_path(@user) %>
           <%= @user.introduction %>
+          <%= link_to @user.followings.count,user_followings_path(@user) %>フォロー
+          <%= link_to @user.followers.count,user_followers_path(@user) %>フォロワー
       <% if user_signed_in? && @user == current_user %>
           <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
           <%= link_to "プロフィール編集",edit_user_path(@user) %>
@@ -27,6 +29,9 @@
       </div>
       <div class="row">
         <%= link_to post.title,post_path(post) %>
+      </div>
+      <div class="row">
+        <%= render 'likes/like',post: @post %>
       </div>
       <div class="row">
         <% post.tags.each do |tag| %>

@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
   has_many :bookmarks,dependent: :destroy
+  has_many :likes, dependent: :destroy
   
   attachment :post_image
   enum kind: {抹茶: 0,玉露: 1, 煎茶: 2,番茶: 3, その他: 4}
@@ -29,5 +30,9 @@ class Post < ApplicationRecord
   # current_userに投稿がブックマークされているか確認
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
+  end
+  # 引数で渡されたuserがいいねされてるかどうか確認
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 end
