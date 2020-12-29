@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    @posts = Post.all.includes(:user).page(params[:page]).per(9)
   end
 
   def index
@@ -25,9 +26,10 @@ class PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(/,|、/)
     if @post.save
         @post.save_post(tag_list)
-    redirect_to post_path(@post)
+        redirect_to post_path(@post)
+    else
+        render :new
     end
-    render :new
 
   end
 

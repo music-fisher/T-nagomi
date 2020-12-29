@@ -19,6 +19,7 @@
                     <%= link_to tag.tag_name,tag_posts_path(tag_id: tag.id) %>
                 <% end %>
             </div>
+            <%= render 'likes/like', post: @post %>
              <%= render 'posts/bookmark',post: @post %>
              <% if current_user.id == @post.user_id %>
                  <%= link_to '編集する',edit_post_path(@post) %>
