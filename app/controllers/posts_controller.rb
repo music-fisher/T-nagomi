@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @posts = Post.all.includes(:user).page(params[:page]).per(9)
+    @comment = Comment.new
   end
 
   def index
