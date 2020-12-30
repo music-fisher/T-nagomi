@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :tagmaps
   has_many :bookmarks,dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   attachment :post_image
   enum kind: {抹茶: 0,玉露: 1, 煎茶: 2,番茶: 3, その他: 4}

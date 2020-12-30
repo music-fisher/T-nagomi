@@ -3,9 +3,13 @@
     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
     <%= post.likes.count %>
   <% end %>
+    <i class="far fa-comments"></i>
+    <%= post.comments.count %>
 <% else %>
   <%= link_to post_likes_path(post),method: :post do %>
     <i class="far fa-heart" aria-hidden="true" ></i>
     <%= post.likes.count %>
   <% end %>
+    <i class="far fa-comments"></i>
+    <%= post.comments.count %>
 <% end %>
