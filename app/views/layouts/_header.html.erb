@@ -1,7 +1,7 @@
+    <nav>
 <div class="container">
   <div class="row">
-    <nav class="navbar navbar-default">
-        <ul>
+        <ul class="nav-item nav navbar-nav navbar-right">
           <!--ログインしているとき-->
           <% if user_signed_in? %>
             <li><%= link_to "Top",root_path %></li>
@@ -17,7 +17,6 @@
             <li><%= link_to "Sign_in",new_user_session_path %></li>
           <% end %>
         </ul>
-    </nav>
-
   </div>
 </div>
+    </nav>    
