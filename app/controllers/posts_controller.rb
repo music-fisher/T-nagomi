@@ -3,13 +3,14 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
-    @posts = Post.all.includes(:user).page(params[:page]).per(9)
+    @posts = Post.all.includes(:user).page(params[:page]).per(8)
     @comment = Comment.new
   end
 
   def index
-    @posts = Post.all.includes(:user).page(params[:page]).per(9)
+    @posts = Post.all.includes(:user).page(params[:page]).per(8)
     @tag_list = Tag.all
+    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
     # kind検索@post必要ない？？
     # @post = Post.find(params[:id])
   end
@@ -54,6 +55,10 @@ class PostsController < ApplicationController
     @tag = Tag.find(params[:tag_id])#クリックしたタグの情報取得
     @posts = @tag.posts.all.page(params[:page]).per(5)#タグに紐づく投稿
     # @user = User.find(params[:id])
+  end
+  def rank
+    # @all_ranks = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+  @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
   end
 
   private

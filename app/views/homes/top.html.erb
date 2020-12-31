@@ -1,23 +1,31 @@
 <main>
-<div class="container-top">
-  <div class="main-visual">
-    <div class="main-visual-content">
-        <h1 class="top-title">T+nagomi</h1>
-          <p "main-visual-text">日本茶について語り合い、暮らしを豊かにしませんかー・・</p>
+    <div class="container-top">
+        <div class="main-visual">
+          <div class="main-visual-content">
+            <h1 class="top-title">T+nagomi</h1>
+              <p "main-visual-text">日本茶について語り合い、暮らしを豊かにしませんかー・・</p>
+          </div>
+        </div>  
+        <div class="row">
+          <div class="col-md-5">
+          <h2 class="concept-heading">Concept</h2>
+            <p class="lead">日本茶について共有して<br>
+                生活をワンランクアップさせましょう！</p>
+              <p>日本茶は産地や淹れ方によって大幅に味が異なり、好みも人それぞれです。 <br> 
+                  最近では海外では日本茶が人気なものの、日本人の日本茶離れも進んでおり、<br>
+                  ゆっくり自宅でお茶を楽しむ時間を持つ人も少ないようです。<br>
+                  そこで、ユーザー同士でお茶の様々な飲み方や楽しみ方、食べ合わせ、豆知識、困っていることなど、<br>
+                  日本茶の情報交換をして暮らしをより豊かにしていこう！というサイトとなっております。
+              </p>
+              <div class="read-more"><%= link_to '>>Read more',homes_about_path,class: "btn btn-success" %></div>
+          </div>    
+        </div>
+        <div class="rank">
+          <h2>Ranking</h2>
+          <div class="rank-post">
+            <%= render 'posts/rank',all_ranks: @all_ranks %>
+            <%= link_to '>>Read more',rank_path,class: "btn btn-success" %>
+          </div>
         </div>
     </div>
-  </div>
-    <div class="row">
-      <div class="col-md-5">
-      <h2 class="concept-heading">Concept</h2>
-        <p class="lead">日本茶について共有して生活をワンランクアップさせましょう！</p>
-          <p>日本茶は産地や淹れ方によって大幅に味が異なり、好みも人それぞれです。 <br> 
-              最近では海外では日本茶が人気なものの、日本人の日本茶離れも進んでおり、ゆっくり自宅でお茶を楽しむ時間を持つ人も少ないようです。<br>
-              そこで、ユーザー同士でお茶の様々な飲み方や楽しみ方、食べ合わせ、豆知識、困っていることなど、<br>
-              日本茶の情報交換をして暮らしをより豊かにしていこう！というサイトとなっております。
-          </p>
-          <div class="read-more"><%= link_to '>>Read more',homes_about_path %></div>
-      </div>    
-    </div>
   </main>
-<div>

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:mypage]
+  before_action :authenticate_user!,except: [:index]
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all.page(params[:page]).per(9)
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
   end
   def edit
     @user = User.find(params[:id])

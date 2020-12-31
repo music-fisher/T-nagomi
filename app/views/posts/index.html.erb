@@ -1,12 +1,17 @@
-<h1>Teas 投稿一覧</h1>
 <div class="container">
+<h1>Teas 投稿一覧</h1>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= render 'posts/kind',post: @post %>
       <%= render 'posts/tag_list',tag_list: @tag_list %>
     </div>
-      <div class="col-md-9">
+      <div class="col-md-8">
         <%= render 'posts/post_index',posts: @posts, user: @user %>
+      </div>
+      <div class="col-md-2">
+        <h3>Ranking</h3>
+          <%= render 'posts/rank',all_ranks: @all_ranks %>
+          <%= link_to '>>Read more',rank_path %>
       </div>
       <%= paginate @posts %>
   </div>

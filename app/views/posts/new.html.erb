@@ -1,4 +1,4 @@
-<h1>新規投稿</h1>
+<h2>新規投稿</h2>
 <div class="container">
   <!--エラーメッセージ -->
   <% if @post.errors.any? %>
@@ -33,7 +33,7 @@
         <%= f.text_area :body,placeholder:"800字以内",class: "col-md-4" %>
       </div>  
       <div class="row">
-          <%= f.submit "投稿する",class: "col-md-2"%>
+          <%= f.submit "投稿する",class: "col-md-2 btn btn-warning"%>
       </div>
     </div>
     <% end %>
