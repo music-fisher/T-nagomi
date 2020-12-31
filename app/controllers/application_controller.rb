@@ -2,13 +2,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   
     def after_sign_in_path_for(resource)
-      if current_user
-        flash[:notice] = "ログインに成功しました。"
         user_path(resource)
-      else
-        flash[:notice] = "新規登録完了しました。"
+    end
+    def after_sign_up_path_for(resource)
         posts_path
-      end
     end
   
   protected
