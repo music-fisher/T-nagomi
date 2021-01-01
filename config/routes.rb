@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :tags do
     get 'posts', to:"posts#search"
   end
+  get '/rank' => 'posts#rank'
 end
 
 

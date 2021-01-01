@@ -1,23 +1,41 @@
-<p id = "notice">
- <%= notice %>
-</p>
+<p id = "notice"></p>
   <% if user_signed_in? && @user == current_user %>
+<div class="container">
     <h1>MyPage</h1>
   <% else %>
     <h1>User Page</h1>
-  <% end %>  
-<div class="container">
+  <% end %>
   <div class="row">
-    <div class="col-md-3">
-      <%= attachment_image_tag @user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %>
-          <%= link_to @user.name,user_path(@user) %>
-          <%= @user.introduction %>
-          <%= link_to @user.followings.count,user_followings_path(@user) %>フォロー
-          <%= link_to @user.followers.count,user_followers_path(@user) %>フォロワー
+    <div class="user-info col-md-3">
+      <div class="user-img">
+        <%= attachment_image_tag @user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg',size: "100x100" %>
+      </div>
+      <div class="user-name">
+        <%= link_to @user.name,user_path(@user) %>
+      </div>
+      <div class="user-introduction">
+        <%= @user.introduction %>
+      </div>
+      <div class="user-following">
+        <%= link_to user_followings_path(@user) do%>
+          <%= "#{@user.followings.count}フォロー" %>
+        <% end %>
+      </div>
+      <div class="user-follower">
+        <%= link_to user_followers_path(@user) do %>
+          <% "#{@user.followers.count}フォロワー" %>
+        <% end %>
+      </div>
       <% if user_signed_in? && @user == current_user %>
-          <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
-          <%= link_to "プロフィール編集",edit_user_path(@user) %>
-          <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
+      <div class="link-bookmark">
+        <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
+      </div>
+      <div class="link-edit-profile">
+        <%= link_to "プロフィール編集",edit_user_path(@user) %>
+      </div>
+      <div class="link-edit-myinfo">
+        <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
+      </div>
       <% end %>
     </div>
     <div class="col-md-9">
@@ -39,6 +57,6 @@
         <% end %>
       <% end %>
       </div>
-    </div>  
+    </div>
   </div>
 </div>

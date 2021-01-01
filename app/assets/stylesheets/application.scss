@@ -14,5 +14,30 @@
  *= require_self
  */
 @import "bootstrap-sprockets";
-@import "bootstrap"
+@import "bootstrap";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h2 {
+  border-bottom: 3px dotted #000;
+  font-family: 'Barlow', sans-serif;
+}
+body{
+  background-color:#EEEEEE;
+  font-family: 'Barlow', sans-serif;
+}
+
+header{
+  background-color:#CCFF99;
+  padding-bottom: 0px;
+}
+main{
+  margin-top: 0px;
+  font-family: 'Barlow', sans-serif;
+}
+p{
+  font-family: 'Barlow', sans-serif;
+}
