@@ -3,9 +3,17 @@
 <table class="table">
   <tr>
     <td><%= link_to user_path(user) do %>
-          <%= attachment_image_tag user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %></td>
+          <%= attachment_image_tag user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg',size: '100x100' %>
         <% end %>
-    <td><%= link_to user.name, user_path(user) %></td>
+        <%= link_to user.name, user_path(user) %></td>
+    <td>これまでの投稿：<%= user.posts.count %>件</td>
+    <td><%= link_to user_followings_path(user) do %>
+          <%= "フォロー#{user.followings.count}件" %>
+        <% end %>
+        <%= link_to user_followers_path(user) do %>
+          <%= "フォロワー#{user.followers.count}件" %>
+        <% end %>
+    </td>
     <td><%= render 'users/follow_btn',user: user %></td>
   <tr>
  </table>
