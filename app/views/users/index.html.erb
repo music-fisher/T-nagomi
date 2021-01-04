@@ -12,8 +12,8 @@
         <% end %>
         <%= link_to user_followers_path(user) do %>
           <%= "フォロワー#{user.followers.count}件" %>
-        <% end %>
     </td>
+    <% end %>
     <td><%= render 'users/follow_btn',user: user %></td>
   <tr>
  </table>
