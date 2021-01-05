@@ -8,7 +8,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.includes(:user).page(params[:page]).per(8)
+    @posts = if params[:kind].present?
+               Post.where(kind: params[:kind]).includes(:user).page(params[:page]).per(8)
+             else
+               Post.all.includes(:user).page(params[:page]).per(8)
+             end
     @tag_list = Tag.all
     @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
     # kind検索@post必要ない？？
