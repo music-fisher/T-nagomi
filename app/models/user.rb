@@ -20,8 +20,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :introduction, length: { maximum: 200 } 
   attachment :profile_image
-  validates :comment_content, presence: true, length: {maximum: 1000}
- 
+  
   # フォロー機能
   def follow(user_id)
     relationship = relationships.new(followed_id: user_id)
