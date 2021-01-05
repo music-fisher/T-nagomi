@@ -49,7 +49,7 @@
         <%= link_to post.title,post_path(post) %>
       </div>
       <div class="row">
-        <%= render 'likes/like',post: @post %>
+        <%= render 'likes/like',post: post %>
       </div>
       <div class="row">
         <% post.tags.each do |tag| %>
