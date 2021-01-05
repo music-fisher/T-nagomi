@@ -1,5 +1,5 @@
 <!--kind検索実装予定-->
-<%= form_with model: post,local: true do |f| %>
+<%= form_with url: posts_path, method: 'get', local: true do |f| %>
   <%= f.label :"Tags Kind" %>
   <%= f.select :kind,["抹茶", "玉露", "煎茶", "番茶", "その他"] %>
   <%= f.submit '検索する' %>
