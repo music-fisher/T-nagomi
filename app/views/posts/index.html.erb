@@ -6,7 +6,7 @@
       <%= render 'posts/tag_list',tag_list: @tag_list %>
     </div>
       <div class="col-md-8">
-        <%= render 'posts/post_index',posts: @posts, user: @user %>
+        <%= render 'posts/post_index',posts: @posts, user: @user, search_posts: @search_posts %>
       </div>
       <div class="col-md-2">
         <h3>Ranking</h3>

@@ -18,6 +18,10 @@
               <li><%= link_to "Sign_in",new_user_session_path %></li>
             <% end %>
           </ul>
+          <%= search_form_for search, url: posts_path do |f| %>
+            <%= f.text_field :title_cont,placeholder: '🔍テキストを入力..',class: 'search-btn' %>
+            <%= f.submit '検索する' %>
+          <% end %>
       </nav>    
     </div>
   </div>
