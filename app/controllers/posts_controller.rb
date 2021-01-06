@@ -15,7 +15,6 @@ class PostsController < ApplicationController
              end
     @tag_list = Tag.all
     @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
-    # kind検索@post必要ない？？
     # @post = Post.find(params[:id])
   end
   # ブックマークの一覧

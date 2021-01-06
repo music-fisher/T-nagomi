@@ -50,7 +50,7 @@
           <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
         <% end %>
       </div>
-      <div class="post-icon">
+      <div id="likes_buttons_<%= post.id %>">
         <%= render 'likes/like', post: post %>
       </div>
        <%= render 'posts/bookmark',post: post %>

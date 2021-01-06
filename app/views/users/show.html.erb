@@ -48,7 +48,7 @@
       <div class="row">
         <%= link_to post.title,post_path(post) %>
       </div>
-      <div class="row">
+      <div id="likes_buttons_<%= post.id %>">
         <%= render 'likes/like',post: post %>
       </div>
       <div class="row">

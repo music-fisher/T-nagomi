@@ -1,0 +1,12 @@
+<% post.comments.each do |comment| %>
+    <div class="col-3">    
+            <%= comment.user.name %>
+    </div>
+    <div class="col-6">
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <%= comment.comment_content %>
+            <% if comment.user == current_user %>
+                <%= link_to '削除する',comment_path(comment),method: :delete,class: "btn-danger btn-sm",remote: true %>
+            <% end %>
+    </div>
+<% end %>
