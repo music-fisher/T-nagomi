@@ -34,6 +34,18 @@ header{
   background-color:#CCFF99;
   padding-bottom: 0px;
 }
+footer {
+  width: 100%;
+  height: 120px;
+  text-align: center;
+  line-height: 120px;
+  background-color: #CCFF99;
+}
+
+.footer-text {
+  color: #fff;
+}
+//フォントの変更 
 main{
   margin-top: 0px;
   font-family: 'Barlow', sans-serif;

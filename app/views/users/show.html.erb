@@ -39,24 +39,26 @@
       <% end %>
     </div>
     <div class="col-md-9">
-      <div class="row">
-      <% @posts.each do |post| %>
-        <%= link_to post_path(post) do %>
-          <%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpeg',fallback: 'noimage.jpg' %>
+        <% @posts.each do |post| %>
+      <div class="post">
+        <div class="tea-body">
+          <%= link_to post_path(post) do %>
+            <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: '180x200' %>
+          <% end %>
+        </div>
+        <div class="post-title">
+          <%= link_to post.title,post_path(post) %>
+        </div>
+        <div id="likes_buttons_<%= post.id %>">
+          <%= render 'likes/like',post: post %>
+        </div>
+        <div class="post-tag">
+          <% post.tags.each do |tag| %>
+            <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+          <% end %>
+        </div>
+      </div>
         <% end %>
-      </div>
-      <div class="row">
-        <%= link_to post.title,post_path(post) %>
-      </div>
-      <div id="likes_buttons_<%= post.id %>">
-        <%= render 'likes/like',post: post %>
-      </div>
-      <div class="row">
-        <% post.tags.each do |tag| %>
-          <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
-        <% end %>
-      <% end %>
-      </div>
     </div>
   </div>
 </div>
