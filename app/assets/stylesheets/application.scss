@@ -21,9 +21,15 @@
   padding: 0;
   box-sizing: border-box;
 }
-h2 {
-  border-bottom: 3px dotted #000;
-  font-family: 'Barlow', sans-serif;
+h2{
+	position: relative;
+	padding:0 0 5px 0;
+	font-size:40px;
+	border-bottom: #BFBFBF dotted 1px;
+}
+h2:first-letter{
+	font-size:55px;
+	color:#FFCC00;
 }
 body{
   background-color:#EEEEEE;
@@ -36,7 +42,7 @@ header{
 }
 footer {
   width: 100%;
-  height: 120px;
+  height: 60px;
   text-align: center;
   line-height: 120px;
   background-color: #CCFF99;
@@ -45,7 +51,7 @@ footer {
 .footer-text {
   color: #fff;
 }
-//フォントの変更 
+//フォントの変更
 main{
   margin-top: 0px;
   font-family: 'Barlow', sans-serif;
@@ -53,4 +59,10 @@ main{
 p{
   font-family: 'Barlow', sans-serif;
   line-height: 4em;
+}
+// 画像の角を丸く
+.border_radius {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
 }
