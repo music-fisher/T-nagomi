@@ -37,7 +37,7 @@ body{
 }
 
 header{
-  background-color:#CCFF99;
+  background-color:#9ACD32;
   padding-bottom: 0px;
 }
 footer {
@@ -45,7 +45,7 @@ footer {
   height: 60px;
   text-align: center;
   line-height: 120px;
-  background-color: #CCFF99;
+  background-color: #9ACD32;
 }
 
 .footer-text {
@@ -65,4 +65,14 @@ p{
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
+}
+a {
+  color: #000000;
+}
+a:hover{
+  text-decoration: none;
+}
+
+th{
+  text-align: center;
 }

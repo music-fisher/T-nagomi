@@ -7,4 +7,25 @@
   // flex-wrap: wrap;
   display: inline-block;
   // float: left;
+  border: ridge 5px #EEEEEE
+}
+.sidebar{
+border: ridge 5px #EEEEEE
+}
+.tag{
+    background-color:#f96781;
+    color: #ffffff;
+    margin: 15px;
+    padding: 5px 5px 5px 10px;
+    position: relative;
+}
+.post-tag {
+    background-color:#f96781;
+    color: #ffffff;
+    margin: 15px;
+    padding: 5px 5px 5px 10px;
+    display: inline-block;
+}
+.post-icon{
+  display: block;
 }

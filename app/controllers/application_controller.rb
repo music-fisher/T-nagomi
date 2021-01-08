@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
     def set_search
       @search = Post.ransack(params[:q])
-      @search_posts = @search.result.page(params[:page]) if params[:q].present?
+      @search_posts = @search.result.page(params[:page]).per(8) if params[:q].present?
     end
 
   protected
