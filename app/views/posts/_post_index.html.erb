@@ -1,59 +1,50 @@
-<!--検索結果表示-->
-<% if search_posts %>
-    <% search_posts.each do |post| %>
-    <div class="post">
-        <div class="user-body">
+  <!--投稿一覧表示-->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Post</th>
+          <th>Title</th>
+          <th>Kind</th>
+          <th>Tag</th>
+          <th>Day</th>
+          <th width="20%;">Icon</th>
+        </tr>
+      </thead>
+    <% posts.each do |post| %>
+      <tr>
+        <td class="user-body">
           <%= link_to user_path(post.user.id) do %>
-            <%= attachment_image_tag user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
+          <%= attachment_image_tag user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
           <% end %>
           <%= link_to post.user.name,user_path(post.user.id) %>
-        </div>
-        <div class="tea-body">
+        </td>
+        <td class="tea-body">
           <%= link_to post_path(post) do %>
-            <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "180x200" %>
+            <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "100x100" %>
           <% end %>
-          <div class="post-title">
-            <%= link_to post.title,post_path(post) %>
-          </div>
-        </div>
-        <div class="post-tag">
+        </td>
+        <td  class="post-title">
+           <%= link_to post.title,post_path(post) %>
+        </td>
+        <td>
+          <%= post.kind %>
+        </td>
+        <td>
           <% post.tags.each do |tag| %>
-            <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+            <div class="post-tag border_radius">
+                <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+            </div>
           <% end %>
-        </div>
-        <div class="post-icon">
+        </td>
+        <td>
+          <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </td>
+        <!--アイコン-->
+        <td class="post-icon">
           <%= render 'likes/like', post: post %>
-        </div>
-         <%= render 'posts/bookmark',post: post %>
-    </div>
-  <% end %>
-<% else %>
-<!--投稿一覧表示-->
-  <% posts.each do |post| %>
-  <div class="post">
-      <div class="user-body">
-        <%= link_to user_path(post.user.id) do %>
-          <%= attachment_image_tag user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
-        <% end %>
-        <%= link_to post.user.name,user_path(post.user.id) %>
-      </div>
-      <div class="tea-body">
-        <%= link_to post_path(post) do %>
-          <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "180x200" %>
-        <% end %>
-        <div class="post-title">
-          <%= link_to post.title,post_path(post) %>
-        </div>
-      </div>
-      <div class="post-tag">
-        <% post.tags.each do |tag| %>
-          <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
-        <% end %>
-      </div>
-      <div id="likes_buttons_<%= post.id %>">
-        <%= render 'likes/like', post: post %>
-      </div>
-       <%= render 'posts/bookmark',post: post %>
-  </div>
-  <% end %>
-<% end %>
+          <%= render 'posts/bookmark',post: post %>
+        </td>
+      </tr>
+    <% end %>
+  </table>

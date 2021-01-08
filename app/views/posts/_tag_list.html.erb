@@ -1,6 +1,6 @@
-    <p>Tag List<p>
+    <h4>Tag List</h4>
       <% tag_list.each do |list| %>
-      <!--引数違う？ページ遷移確認要-->
-        <%= link_to list.tag_name,tag_posts_path(tag_id: list.id) %>
-        <%#= link_to list.tag_name,tag_posts_path(post_tag_id: list.id) %>
+        <div class="tag border_radius">
+          <%= link_to list.tag_name,tag_posts_path(tag_id: list.id) %>
+        </div>
       <% end %>
