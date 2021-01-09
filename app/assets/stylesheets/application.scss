@@ -21,24 +21,31 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  font-family: 'Barlow', sans-serif;
+}
+
 h2{
 	position: relative;
 	padding:0 0 5px 0;
 	font-size:40px;
-	border-bottom: #BFBFBF dotted 1px;
+	border-bottom: #8FBC8F dotted 1px;
 }
 h2:first-letter{
 	font-size:55px;
-	color:#FFCC00;
+  color: #00CC00;
 }
 body{
   background-color:#EEEEEE;
-  font-family: 'Barlow', sans-serif;
+  // font-family: 'Barlow', sans-serif;
 }
 
 header{
   background-color:#9ACD32;
   padding-bottom: 0px;
+}
+nav ul li a{
+  color: #fff;
 }
 footer {
   width: 100%;
@@ -46,6 +53,16 @@ footer {
   text-align: center;
   line-height: 120px;
   background-color: #9ACD32;
+  position: absolute;
+  bottom: 0px;
+  // padding-top: 60px;
+}
+
+.footerFixed{
+    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+    position: relative;/* ←相対位置 */
+    padding-bottom: 60px; /* ←フッターの高さを指定 */
+    box-sizing: border-box;
 }
 
 .footer-text {
@@ -75,4 +92,7 @@ a:hover{
 
 th{
   text-align: center;
+}
+.tag-content{
+  color: #fff;
 }

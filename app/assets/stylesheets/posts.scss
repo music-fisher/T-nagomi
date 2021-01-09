@@ -14,18 +14,19 @@ border: ridge 5px #EEEEEE
 }
 .tag{
     background-color:#f96781;
-    color: #ffffff;
     margin: 15px;
     padding: 5px 5px 5px 10px;
     position: relative;
 }
-.post-tag {
-    background-color:#f96781;
-    color: #ffffff;
-    margin: 15px;
-    padding: 5px 5px 5px 10px;
-    display: inline-block;
-}
-.post-icon{
-  display: block;
+// .post-tag {
+//     background-color:#f96781;
+//     color: #ffffff;
+//     margin: 15px;
+//     padding: 5px 5px 5px 10px;
+//     display: inline-block;
+// }
+
+h3{
+    font-size:20px;
+	background: linear-gradient(transparent 60%, #FAE438 60%);
 }

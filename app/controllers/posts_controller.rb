@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @post_tags = @post.tags
     @posts = Post.all.includes(:user).page(params[:page]).per(8)
     @comment = Comment.new
+    @user = User.find(@post.user_id)
   end
 
   def index
@@ -60,12 +61,11 @@ class PostsController < ApplicationController
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])#クリックしたタグの情報取得
     @posts = @tag.posts.all.page(params[:page]).per(5)#タグに紐づく投稿
-
     # @user = User.find(params[:id])
   end
   def rank
     # @all_ranks = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
-  @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
+   @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
   end
 
   private

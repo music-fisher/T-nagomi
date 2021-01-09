@@ -1,10 +1,13 @@
-<h1>Post Edit</h1>
+<h2 style="text-align:center;">Post Edit</h2>
 <div class="container">
   <div class="row">
     <%= form_with model: @post, local: true do |f|  %>
     <div class="col-md-4">
-      <%= attachment_image_tag @post, :post_image, :fill, 40, 40, format: 'jpeg',fallback: "noimage.jpg" %>
-      <%= f.attachment_field :post_image, placeholder: "投稿画像" %>
+      <%= attachment_image_tag @post, :post_image, format: 'jpeg',fallback: "noimage.jpg",size: "300x300",id: "preview_image" %>
+      <%= f.attachment_field :post_image, placeholder: "投稿画像",id: "preview"  %>
+      <!--画像プレビュー機能-->
+        <%= render 'layouts/preview' %>
+      <!--ここまで-->
     </div>
     <div class="col-md-8">
       <div class="row">
@@ -24,7 +27,7 @@
         <%= f.text_area :body,placeholder:"800字以内",class: "col-md-4" %>
       </div>  
       <div class="row">
-          <%= f.submit "更新する",class: "col-md-2"%>
+          <%= f.submit "更新する",class: "col-md-2 btn btn-warning btn-sm"%>
       </div>
     </div>
     <% end %>

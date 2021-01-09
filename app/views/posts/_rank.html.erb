@@ -9,13 +9,24 @@
       <%= link_to post.title,post_path(post) %>
     </div>
   </div>
-  <div class="post-tag">
     <% post.tags.each do |tag| %>
-      <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
-    <% end %>
+  <div class="tag border_radius">
+      <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id),class: "tag-content" %>
   </div>
-      <div class="post-icon">
-    <%= render 'likes/like', post: post %>
+    <% end %>
+  <div class="post-icon">
+    <span id="likes_buttons_<%= post.id %>">
+      <%= render 'likes/like',post: post %>
+    </span>
+    <span class="comment-icon">
+      <%= link_to post_path(post) do %>
+        <i class="far fa-comments"></i>
+        <%= post.comments.count %>
+      <% end %>
+    </span>
+    <span>
+      <%= render 'posts/bookmark',post: post %>
+    </span>
   </div>
 </div>
 <% end %>
