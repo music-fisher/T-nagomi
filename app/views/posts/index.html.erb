@@ -11,7 +11,7 @@
       <div class="col-md-2 rank">
         <h3>Ranking</h3>
           <%= render 'posts/rank',all_ranks: @all_ranks %>
-          <%= link_to '>>Read more',rank_path %>
+          <%= link_to '>>Read more',rank_path,class: "btn btn-warning btn-sm" %>
       </div>
       <%= paginate @posts %>
   </div>

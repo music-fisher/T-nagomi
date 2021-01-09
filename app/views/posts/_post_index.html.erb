@@ -32,8 +32,8 @@
         </td>
         <td>
           <% post.tags.each do |tag| %>
-            <div class="post-tag border_radius">
-                <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+            <div class="tag border_radius">
+                <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id), class: "tag-content" %>
             </div>
           <% end %>
         </td>
@@ -41,9 +41,19 @@
           <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
         </td>
         <!--アイコン-->
-        <td class="post-icon">
-          <%= render 'likes/like', post: post %>
+        <td class="post-icon" width="20%;">
+          <span id="likes_buttons_<%= post.id %>">
+            <%= render 'likes/like',post: post %>
+          </span>
+          <span class="comment-icon">
+            <%= link_to post_path(post) do %>
+              <i class="far fa-comments"></i>
+              <%= post.comments.count %>
+            <% end %>
+          </span>
+          <span>
           <%= render 'posts/bookmark',post: post %>
+          </span>
         </td>
       </tr>
     <% end %>

@@ -1,13 +1,16 @@
 <div class="container">
   <div class="row">
-    <h2>プロフィール編集</h2>
+    <h2 style="text-align:center;">Profile edit</h2>
     <div class="col-md-6 col-md-offset-3">
       <%= form_with model:@user,url:user_path(@user), local:true do |f| %>
       <table>
         <tr>
           <td><%= f.label :"プロフィール画像" %></td>
-          <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40,format: 'jpeg', class: "image-circle",fallback: "noimage_user.jpg" %>
-          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+          <td><%= attachment_image_tag @user, :profile_image,format: 'jpeg', class: "img-circle",fallback: "noimage_user.jpg",size: "200x200",id: "preview_image" %>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像",id: "preview" %>
+          <!--画像プレビュー機能-->
+            <%= render 'layouts/preview' %>
+          <!--ここまで-->
           </td>
         </tr>
         <tr>

@@ -1,64 +1,63 @@
-<p id = "notice"></p>
-  <% if user_signed_in? && @user == current_user %>
 <div class="container">
-    <h1>MyPage</h1>
+  <p id = "notice"></p>
+  <% if user_signed_in? && @user == current_user %>
+    <h2 style="text-align:center;">MyPage</h2>
   <% else %>
-    <h1>User Page</h1>
+    <h2 style="text-align:center;">User Page</h2>
   <% end %>
   <div class="row">
-    <div class="user-info col-md-3">
-      <div class="user-img">
-        <%= attachment_image_tag @user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg',size: "100x100" %>
-      </div>
-      <div class="user-name">
-        <%= link_to @user.name,user_path(@user) %>
-      </div>
-      <div class="user-introduction">
-        <%= @user.introduction %>
-      </div>
-      <div class="user-following">
-        <%= link_to user_followings_path(@user) do%>
-          <%= "#{@user.followings.count}フォロー" %>
+    <div class="user-info col-xs-3">
+      <table class="table">
+        <tr>
+        <td>
+          <%= attachment_image_tag @user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg',size: "100x100" %>
+        </td>
+        </tr>
+        <tr>
+        <td class="user-name">
+          <%= link_to @user.name,user_path(@user) %>
+        </td>
+        </tr>
+        <tr>
+        <td class="user-introduction">
+          <%= @user.introduction %>
+        </td>
+        </tr>
+        <tr>
+        <td class="user-following success">
+          <%= link_to user_followings_path(@user) do%>
+            <%= "#{@user.followings.count}フォロー" %>
+          <% end %>
+        </td>
+        </tr>
+        <tr>
+        <td class="user-follower info" >
+          <%= link_to user_followers_path(@user) do %>
+            <% "#{@user.followers.count}フォロワー" %>
+          <% end %>
+        </td>
+        <tr>
+        <% if user_signed_in? && @user == current_user %>
+        <tr>
+        <td class="link-bookmark warning">
+          <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
+        </td>
+        <tr>
+        <tr>
+        <td class="link-edit-profile danger">
+          <%= link_to "プロフィール編集",edit_user_path(@user) %>
+        </td>
+        </tr>
+        <tr>
+        <td class="link-edit-myinfo active">
+          <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
+        </td>
+        </tr>
         <% end %>
-      </div>
-      <div class="user-follower">
-        <%= link_to user_followers_path(@user) do %>
-          <% "#{@user.followers.count}フォロワー" %>
-        <% end %>
-      </div>
-      <% if user_signed_in? && @user == current_user %>
-      <div class="link-bookmark">
-        <%= link_to "ブックマーク一覧",bookmarks_posts_path %>
-      </div>
-      <div class="link-edit-profile">
-        <%= link_to "プロフィール編集",edit_user_path(@user) %>
-      </div>
-      <div class="link-edit-myinfo">
-        <%= link_to "登録情報の変更はこちら",edit_user_registration_path %>
-      </div>
-      <% end %>
+      </table>
     </div>
-    <div class="col-md-9">
-        <% @posts.each do |post| %>
-      <div class="post">
-        <div class="tea-body">
-          <%= link_to post_path(post) do %>
-            <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: '180x200' %>
-          <% end %>
-        </div>
-        <div class="post-title">
-          <%= link_to post.title,post_path(post) %>
-        </div>
-        <div id="likes_buttons_<%= post.id %>">
-          <%= render 'likes/like',post: post %>
-        </div>
-        <div class="post-tag">
-          <% post.tags.each do |tag| %>
-            <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
-          <% end %>
-        </div>
-      </div>
-        <% end %>
+    <div class="col-xs-9">
+      <%= render 'posts/post_index',posts: @posts,user: @user %>
     </div>
   </div>
 </div>
