@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about'
   get '/mypage' => 'users#mypage'
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update,:index] do
     resource :relationships, only: [:create, :destroy]
@@ -20,6 +22,10 @@ Rails.application.routes.draw do
     get 'posts', to:"posts#search"
   end
   get '/rank' => 'posts#rank'
+  # ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
 end
 
 
