@@ -1,12 +1,6 @@
-<h2>Fllow User all</h2>
-<% @users.each do |user| %>
-<table class="table">
-  <tr>
-    <td><%= link_to user_path(user) do %>
-          <%= attachment_image_tag user, :profile_image, :fill, 10, 10, format: 'jpeg',class: "image-circle",fallback: 'noimage_user.jpg' %></td>
-        <% end %>
-    <td><%= link_to user.name, user_path(user) %></td>
-    <td><%= render 'users/follow_btn',user: user %></td>
-  <tr>
- </table>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h2>Fllow User all</h2>
+    <%= render 'users/index', users: @users %>
+  </div>
+</div>

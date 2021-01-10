@@ -6,13 +6,16 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
-  
+
   attachment :post_image
   enum kind: {抹茶: 0,玉露: 1, 煎茶: 2,番茶: 3, その他: 4}
   # バリデーション
-  validates :title, presence: true,length: { maximum: 20 } 
-  validates :body, presence: true,length: { maximum: 800 } 
+  validates :title, presence: true,length: { maximum: 20 }
+  validates :body, presence: true,length: { maximum: 800 }
 
+  scope :ranking, -> {
+    where(id: Like.group(:post_id).order('count(post_id) desc').select(:post_id))
+  }
 
   def save_post(savepost_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -28,7 +31,7 @@ class Post < ApplicationRecord
       self.tags << post_tag
     end
   end
-  
+
   # current_userに投稿がブックマークされているか確認
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
@@ -36,5 +39,10 @@ class Post < ApplicationRecord
   # 引数で渡されたuserがいいねされてるかどうか確認
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
+  end
+
+  def rank
+    ranking_ids = Post.ranking.pluck(:id)
+    ranking_ids.index(id) + 1
   end
 end
