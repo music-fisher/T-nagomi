@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
-    @posts = Post.all.includes(:user).page(params[:page]).per(8)
+    @posts = Post.all.includes(:user).page(params[:page]).per(5)
     @comment = Comment.new
     @user = User.find(@post.user_id)
   end
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
              elsif params[:kind].present?
                Post.where(kind: params[:kind]).includes(:user).page(params[:page]).per(8)
              else
-               Post.all.includes(:user).page(params[:page]).per(8)
+               Post.all.includes(:user).page(params[:page]).per(5)
              end
 
     @tag_list = Tag.all
@@ -36,7 +36,8 @@ class PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(/,|、/)
     if @post.save
         @post.save_post(tag_list)
-        redirect_to post_path(@post)
+        redirect_to posts_path
+        flash[:success]="投稿に成功しました。"
     else
         render :new
     end
@@ -45,17 +46,30 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list =@post.tags.pluck(:tag_name).join(",")
   end
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
     @user = @post.user.id
-    redirect_to user_path(@user)
+    tag_list = params[:post][:tag_name].split(/,|、/)
+    if @post.update(post_params)
+        @post.save_post(tag_list)
+        flash[:notice]="投稿を更新しました。"
+        redirect_to user_path(@user)
+    else
+      flash[:alart]="投稿の更新に失敗しました。"
+      render 'edit'
+    end
   end
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    if @post.destroy
+       flash[:success]="投稿を削除しました。"
+      redirect_to posts_path
+    else
+       flash[:alert]="投稿の削除に失敗しました。"
+      render 'show'
+    end
   end
   def search
     @tag_list = Tag.all

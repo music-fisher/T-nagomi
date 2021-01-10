@@ -41,20 +41,26 @@
           <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
         </td>
         <!--アイコン-->
-        <td class="post-icon" width="20%;">
-          <span id="likes_buttons_<%= post.id %>">
-            <%= render 'likes/like',post: post %>
-          </span>
-          <span class="comment-icon">
-            <%= link_to post_path(post) do %>
-              <i class="far fa-comments"></i>
-              <%= post.comments.count %>
-            <% end %>
-          </span>
-          <span>
-          <%= render 'posts/bookmark',post: post %>
-          </span>
-        </td>
+        <% if user_signed_in? %>
+          <td class="post-icon" width="20%;">
+            <span id="likes_buttons_<%= post.id %>">
+              <%= render 'likes/like',post: post %>
+            </span>
+            <span class="comment-icon">
+              <%= link_to post_path(post) do %>
+                <i class="far fa-comments"></i>
+                <%= post.comments.count %>
+              <% end %>
+            </span>
+            <span>
+            <%= render 'posts/bookmark',post: post %>
+            </span>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>
+  <!--ページネーション -->
+  <div class="pagination">
+    <%= paginate posts %>
+  </div>

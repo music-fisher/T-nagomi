@@ -26,6 +26,7 @@ html{
 }
 
 h2{
+  text-align: center;
 	position: relative;
 	padding:0 0 5px 0;
 	font-size:40px;
@@ -55,7 +56,6 @@ footer {
   background-color: #9ACD32;
   position: absolute;
   bottom: 0px;
-  // padding-top: 60px;
 }
 
 .footerFixed{
@@ -90,9 +90,33 @@ a:hover{
   text-decoration: none;
 }
 
+// deviseログイン画面
+.signup,.login{
+  text-align: center;
+}
+
 th{
   text-align: center;
 }
 .tag-content{
   color: #fff;
+}
+// エラーメッセージ
+#error_explanation{
+  color: red;
+  text-align: center;
+}
+.error{
+  list-style: none;
+}
+// flashメッセージ
+.alert{
+  margin-bottom: 0px;
+}
+.flash{
+  text-align: center;
+}
+// ページネーション
+.pagination{
+  text-align: center;
 }

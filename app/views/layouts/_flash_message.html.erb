@@ -1,0 +1,14 @@
+<% if notice %>
+  <div class="flash time-limit alert alert-info" >
+   <span><%= notice %></span>
+  </div>
+<% elsif flash[:success] %>
+  <div class="flash time-limit alert alert-success">
+   <span><%= flash[:success] %></span>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="flash time-limit alert alert-danger">
+   <span><%= flash[:alert] %></span>
+  </div>
+<% else %>
+<% end %>

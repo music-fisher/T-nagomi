@@ -2,6 +2,7 @@
   <div class="row">
     <h2 style="text-align:center;">Profile edit</h2>
     <div class="col-md-6 col-md-offset-3">
+      <%= render 'layouts/error_message',resource: @user %>
       <%= form_with model:@user,url:user_path(@user), local:true do |f| %>
       <table>
         <tr>

@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= resource.errors.count %>件のエラーが発生しました。以下ご確認お願いいたします。</h4>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li class="error"><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

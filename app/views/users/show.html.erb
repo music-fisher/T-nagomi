@@ -1,5 +1,5 @@
 <div class="container">
-  <p id = "notice"></p>
+  <%= render 'layouts/flash_message' %>
   <% if user_signed_in? && @user == current_user %>
     <h2 style="text-align:center;">MyPage</h2>
   <% else %>
