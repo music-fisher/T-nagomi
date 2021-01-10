@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!,except: [:index]
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all.page(params[:page]).per(9)
@@ -9,10 +9,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:update] = "You have updated user info successfully."
+      flash[:notice] = "プロフィールを編集しました。"
     redirect_to user_path(@user.id)
-    # else
-    #   render  :new
     end
   end
   end

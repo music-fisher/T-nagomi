@@ -3,15 +3,23 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @user = User.find(@post.user_id)
-    comment = Comment.new(comment_params)
-    comment.user_id = current_user.id
-    comment.post_id = @post.id
-    comment.save
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.post_id = @post.id
+    if @comment.save
+      flash[:notice]="コメントを投稿しました。"
+    else
+      flash[:alert]="コメントの投稿に失敗しました。"
+    end
   end
   def destroy
     @comment = Comment.find(params[:id])
     @post = @comment.post
-    @comment.destroy
+    if @comment.destroy
+       flash[:success]="コメントを削除しました。"
+    else
+      flash[:alert]="コメントの削除に失敗しました。"
+    end
   end
   private
   def comment_params

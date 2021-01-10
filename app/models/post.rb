@@ -20,7 +20,7 @@ class Post < ApplicationRecord
     new_tags = savepost_tags - current_tags
     # 古いタグの削除
     old_tags.each do |old_name|
-      self.tags.delete Tags.find_by(tag_name: old_name)
+      self.tags.delete Tag.find_by(tag_name: old_name)
     end
     # 新しいタグの保存
     new_tags.each do |new_name|

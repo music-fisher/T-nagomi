@@ -1,5 +1,6 @@
 <h2 style="text-align:center;">Post Edit</h2>
 <div class="container">
+  <%= render 'layouts/error_message',resource: @post %>
   <div class="row">
     <%= form_with model: @post, local: true do |f|  %>
     <div class="col-md-4">
@@ -20,12 +21,12 @@
       </div>
       <div class="row">
         <%= f.label :"タグ",class: "col-md-4" %>
-        <%= f.text_field :tag_name,placeholder:"例）豆知識,お悩み,日常,相談",class: "col-md-4" %>
+        <%= f.text_field :tag_name, value: @tag_list,placeholder:"例）豆知識,お悩み,日常,相談",class: "col-md-4" %>
       </div>
       <div class="row">
         <%= f.label :"本文",class: "col-md-4" %>
         <%= f.text_area :body,placeholder:"800字以内",class: "col-md-4" %>
-      </div>  
+      </div>
       <div class="row">
           <%= f.submit "更新する",class: "col-md-2 btn btn-warning btn-sm"%>
       </div>

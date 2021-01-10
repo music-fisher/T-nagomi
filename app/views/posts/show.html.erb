@@ -1,4 +1,10 @@
 <div class="container">
+    <div id="flash_message">
+        <%= render 'layouts/flash_message' %>
+    </div>
+    <div id="error_message">
+        <%= render 'layouts/error_message',resource: @comment %>
+    </div>
     <h2 style="text-align:center;"><%= @post.title %></h2>
     <div class="row">
         <div class="col-xs-4">
@@ -20,10 +26,12 @@
             </td>
             </tr>
             <tr>
-            <td class="post-tag">
+            <td>
                 タグ：
                 <% @post_tags.each do |tag| %>
-                    <%= link_to tag.tag_name,tag_posts_path(tag_id: tag.id) %>
+                <span class="tag border_radius">
+                    <%= link_to tag.tag_name,tag_posts_path(tag_id: tag.id),class: "tag-content" %>
+                </span>
                 <% end %>
             </td>
             </tr>

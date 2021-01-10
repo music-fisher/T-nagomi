@@ -1,12 +1,7 @@
 <h2 style="text-align:center">New post</h2>
 <div class="container">
   <!--エラーメッセージ -->
-  <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラーが発生しました。
-    <% @post.errors.full_messages.each do |message| %>
-    <%= message %>
-    <% end %>
-  <% end %>
+  <%= render 'layouts/error_message', resource: @post %>
   <div class="row">
     <%= form_with model: @post, local: true do |f|  %>
     <div class="col-md-4">

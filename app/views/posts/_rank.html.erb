@@ -14,19 +14,22 @@
       <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id),class: "tag-content" %>
   </div>
     <% end %>
-  <div class="post-icon">
-    <span id="likes_buttons_<%= post.id %>">
-      <%= render 'likes/like',post: post %>
-    </span>
-    <span class="comment-icon">
-      <%= link_to post_path(post) do %>
-        <i class="far fa-comments"></i>
-        <%= post.comments.count %>
-      <% end %>
-    </span>
-    <span>
-      <%= render 'posts/bookmark',post: post %>
-    </span>
-  </div>
+    <!--ログインしている時のみアイコン表示-->
+  <% if user_signed_in? %>  
+    <div class="post-icon">
+      <span id="likes_buttons_<%= post.id %>">
+        <%= render 'likes/like',post: post %>
+      </span>
+      <span class="comment-icon">
+        <%= link_to post_path(post) do %>
+          <i class="far fa-comments"></i>
+          <%= post.comments.count %>
+        <% end %>
+      </span>
+      <span>
+        <%= render 'posts/bookmark',post: post %>
+      </span>
+    </div>
+  <% end %>
 </div>
 <% end %>

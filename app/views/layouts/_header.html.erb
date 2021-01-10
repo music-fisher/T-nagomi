@@ -7,14 +7,16 @@
             <% if user_signed_in? %>
               <li><%= link_to "Top",root_path %></li>
               <li><%= link_to "How to use",homes_about_path %></li>
-              <li><%= link_to "Teas",posts_path%></li>
+              <li><%= link_to "Teas",posts_path %></li>
               <li><%= link_to "Users",users_path %></li>
               <li><%= link_to "NewPost",new_post_path %></li>
               <li><%= link_to "MyPage",user_path(current_user) %></li>
+              <li><%= link_to "Ranking",rank_path %></li>
               <li><%= link_to "Logout",destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "Top",root_path %></li>
               <li><%= link_to "How to use",homes_about_path %></li>
+              <li><%= link_to "Teas",posts_path %></li>
               <li><%= link_to "Sign_up",new_user_registration_path %></li>
               <li><%= link_to "Sign_in",new_user_session_path %></li>
             <% end %>

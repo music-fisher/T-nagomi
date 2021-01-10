@@ -1,6 +1,6 @@
-    <h4>Tag List</h4>
-      <% tag_list.each do |list| %>
-        <div class="tag border_radius">
-          <%= link_to list.tag_name,tag_posts_path(tag_id: list.id), class: "tag-content" %>
-        </div>
-      <% end %>
+<h3>Tag List</h3>
+  <% tag_list.each do |list| %>
+    <div class="tag border_radius">
+      <%= link_to list.tag_name,tag_posts_path(tag_id: list.id), class: "tag-content" %>
+    </div>
+  <% end %>
