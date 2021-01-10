@@ -1,35 +1,35 @@
 <% all_ranks.each.with_index(1) do |post,i| %>
-<div class="post">
-  第<%=  i  %>位
-  <div class="tea-body">
-    <%= link_to post_path(post) do %>
-      <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "180x200" %>
-    <% end %>
-    <div class="post-title">
-      <%= link_to post.title,post_path(post) %>
+  <div class="post rank-post">
+    第<%=  i  %>位
+    <div class="tea-body">
+      <%= link_to post_path(post) do %>
+        <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "180x200" %>
+      <% end %>
+      <div class="post-title">
+        <%= link_to post.title,post_path(post) %>
+      </div>
     </div>
-  </div>
-    <% post.tags.each do |tag| %>
-  <div class="tag border_radius">
-      <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id),class: "tag-content" %>
-  </div>
-    <% end %>
-    <!--ログインしている時のみアイコン表示-->
-  <% if user_signed_in? %>  
-    <div class="post-icon">
-      <span id="likes_buttons_<%= post.id %>">
-        <%= render 'likes/like',post: post %>
-      </span>
-      <span class="comment-icon">
-        <%= link_to post_path(post) do %>
-          <i class="far fa-comments"></i>
-          <%= post.comments.count %>
-        <% end %>
-      </span>
-      <span>
-        <%= render 'posts/bookmark',post: post %>
-      </span>
+      <% post.tags.each do |tag| %>
+    <div class="tag border_radius">
+        <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id),class: "tag-content" %>
     </div>
-  <% end %>
-</div>
+      <% end %>
+      <!--ログインしている時のみアイコン表示-->
+    <% if user_signed_in? %>  
+      <div class="post-icon">
+        <span id="likes_buttons_<%= post.id %>">
+          <%= render 'likes/like',post: post %>
+        </span>
+        <span class="comment-icon">
+          <%= link_to post_path(post) do %>
+            <i class="far fa-comments"></i>
+            <%= post.comments.count %>
+          <% end %>
+        </span>
+        <span>
+          <%= render 'posts/bookmark',post: post %>
+        </span>
+      </div>
+    <% end %>
+  </div>
 <% end %>
