@@ -11,16 +11,16 @@ class User < ApplicationRecord
   has_many :relationships,class_name: "Relationship",foreign_key: "follower_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
-  
+
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
-  
+
   has_many :liked_posts, through: :likes, source: :post
-  
+
   validates :name, presence: true
-  validates :introduction, length: { maximum: 200 } 
+  validates :introduction, length: { maximum: 200 }
   attachment :profile_image
-  
+
   # フォロー機能
   def follow(user_id)
     relationship = relationships.new(followed_id: user_id)
@@ -31,6 +31,12 @@ class User < ApplicationRecord
   end
   def following?(user)
     followings.include?(user)
+  end
+  # ゲストログイン
+  def self.guest
+    find_or_create_by(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
   end
 
 end

@@ -5,6 +5,11 @@
           <div class="main-visual-content">
             <h1 class="top-title">T+nagomi</h1>
               <p class="main-visual-text">日本茶について語り合い、暮らしを豊かにしませんかー・・</p>
+              <div class="login_btn">
+                <div class="btn btn-primary"><%= link_to "Sign_up",new_user_registration_path %></div>
+                <div class="btn btn-info"><%= link_to "Sign_in",new_user_session_path %></div>
+                <div class="btn btn-warning"><%= link_to 'ゲストログイン（閲覧用）',users_guest_sign_in_path,method: :post %></div>
+              </div>
           </div>
         </div>
         <div class="cencept">
