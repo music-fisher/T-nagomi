@@ -1,15 +1,25 @@
 <% post.comments.each do |comment| %>
  <div class="row">
-        <div class="col-xs-4">
-            <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg',fallback: "noimage_user.jpg",class: "img-circle",size: "50x50" %>
-            <%= comment.user.name %>
-        </div>
-        <div class="col-xs-8">
+        <% if comment.user == current_user %>
+
+            <div class="col-xs-8 col-xs-offset-2">
                 <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
                 <%= comment.comment_content %>
-                <% if comment.user == current_user %>
-                    <%= link_to '削除する',comment_path(comment),method: :delete,class: "btn-danger btn-sm",remote: true %>
-                <% end %>
-        </div>
+                <%= link_to '削除する',comment_path(comment),method: :delete,class: "btn-danger btn-sm",remote: true,data:{confirm:'コメントを削除しますか？'} %>
+            </div>
+            <div class="col-xs-2">
+                <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg',fallback: "noimage_user.jpg",class: "img-circle",size: "50x50" %>
+                <%= comment.user.name %>
+            </div>
+        <% else %>
+            <div class="col-xs-2">
+                <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg',fallback: "noimage_user.jpg",class: "img-circle",size: "50x50" %>
+                <%= comment.user.name %>
+            </div>
+            <div class="col-xs-10">
+                <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+                <%= comment.comment_content %>
+            </div>
+        <% end %>
     </div>
 <% end %>
