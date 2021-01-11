@@ -2,11 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // top画面レイアウト
-.main-visual{
-  background-image: image-url("img/tea-54e3d0454d_640.jpeg");
+#main-visual{
+  height: 600px;
+}
+// スライド画像指定
+#images{
   width: 100%;
   height: 600px;
+}
+.top-img1{
+  background-image: image-url("img/top-img1.jpg");
   background-size: 100% 100%;
+}
+.top-img2{
+  background-image: image-url("img/top-img2.jpg");
+  background-size: 100% 100%;
+}
+.top-img3{
+  background-image: image-url("img/top-img3.jpg");
+  background-size: 100% 100%;
+}
+.top-img4{
+  background-image: image-url("img/top-img4.jpg");
+  background-size: 100% 100%;
+}
+.top-img5{
+  background-image: image-url("img/top-img5.jpg");
+  background-size: 100% 100%; 
 }
 .read-more{
   text-align: right;
