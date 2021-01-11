@@ -1,15 +1,15 @@
 <main>
     <div class="container-top">
       <%= render 'layouts/flash_message' %>
-        <div class="main-visual">
-          <div class="main-visual-content">
-            <h1 class="top-title">T+nagomi</h1>
-              <p class="main-visual-text">日本茶について語り合い、暮らしを豊かにしませんかー・・</p>
-              <div class="login_btn">
-                <div class="btn btn-primary"><%= link_to "Sign_up",new_user_registration_path %></div>
-                <div class="btn btn-info"><%= link_to "Sign_in",new_user_session_path %></div>
-                <div class="btn btn-warning"><%= link_to 'ゲストログイン（閲覧用）',users_guest_sign_in_path,method: :post %></div>
-              </div>
+        <div id="main-visual">
+          <!--スライド画像-->
+          <div id="images">
+            <div class="top-img1"><%= render 'homes/main_visual_text' %></div>
+            <div class="top-img2"><%= render 'homes/main_visual_text' %></div>
+            <div class="top-img3"><%= render 'homes/main_visual_text' %></div>
+            <div class="top-img4"><%= render 'homes/main_visual_text' %></div>
+            <div class="top-img5"><%= render 'homes/main_visual_text' %></div>
+
           </div>
         </div>
         <div class="cencept">
@@ -26,7 +26,6 @@
           </div>
         </div>
     <div class="row box">
-
       <div class="col-xs-5 col-xs-offset-1">
         <%= image_tag 'img/tea-54e6d04448_640.jpg', :alt => 'tea',size: '400x250',class: "border_radius" %>
       </div>
@@ -52,13 +51,13 @@
         <%= image_tag "img/istockphoto-876524244-170x170.jpg",:alt => 'tea',size: '400x400',class: "border_radius" %>
       </div>
     </div>
-      <div class="read-more"><%= link_to '>>Read more',homes_about_path,class: "btn btn-success" %></div>
-        <div class="rank">
-          <h2>Ranking</h2>
-          <div class="rank-post">
-            <%= render 'posts/rank',all_ranks: @all_ranks %>
-            <%= link_to '>>Read more',rank_path,class: "btn btn-success" %>
-          </div>
+    <div class="read-more"><%= link_to '>>Read more',homes_about_path,class: "btn btn-success" %></div>
+      <div class="rank">
+        <h2>Ranking</h2>
+        <div class="rank-post">
+          <%= render 'posts/rank',all_ranks: @all_ranks %>
+          <%= link_to '>>Read more',rank_path,class: "btn btn-success" %>
         </div>
+      </div>
     </div>
   </main>
