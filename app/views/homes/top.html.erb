@@ -1,0 +1,64 @@
+<main>
+    <div class="container-top">
+      <%= render 'layouts/flash_message' %>
+        <div class="main-visual">
+          <div class="main-visual-content">
+            <h1 class="top-title">T+nagomi</h1>
+              <p class="main-visual-text">日本茶について語り合い、暮らしを豊かにしませんかー・・</p>
+              <div class="login_btn">
+                <div class="btn btn-primary"><%= link_to "Sign_up",new_user_registration_path %></div>
+                <div class="btn btn-info"><%= link_to "Sign_in",new_user_session_path %></div>
+                <div class="btn btn-warning"><%= link_to 'ゲストログイン（閲覧用）',users_guest_sign_in_path,method: :post %></div>
+              </div>
+          </div>
+        </div>
+        <div class="cencept">
+        <h2 class="concept-heading"><strong>Concept</strong></h2>
+          <div class="concept-text">
+            <p class="lead">日本茶について共有して<br>
+                生活をワンランクアップさせましょう！</p>
+              <p>日本茶は産地や淹れ方によって大幅に味が異なり、好みも人それぞれです。 <br>
+                  最近では海外では日本茶が人気なものの、日本人の日本茶離れも進んでおり、<br>
+                  ゆっくり自宅でお茶を楽しむ時間を持つ人も少ないようです。<br>
+                  そこで、ユーザー同士でお茶の様々な飲み方や楽しみ方、食べ合わせ、豆知識、困っていることなど、<br>
+                  日本茶の情報交換をして暮らしをより豊かにしていこう！というサイトとなっております。
+              </p>
+          </div>
+        </div>
+    <div class="row box">
+
+      <div class="col-xs-5 col-xs-offset-1">
+        <%= image_tag 'img/tea-54e6d04448_640.jpg', :alt => 'tea',size: '400x250',class: "border_radius" %>
+      </div>
+      <div class="col-xs-5">
+        <h2 class="concept-heading">T+nagomiとは</h2>
+        <p class="concept-text">Tはお茶を表すTea,<br>
+          日々の生活にお茶＋(プラス)して共有することで、<br>
+          和みましょうということを表しています。</p>
+      </div>
+    </div>
+    <div class="row box">
+      <div class="col-xs-5 col-xs-offset-1">
+        <h2 class="concept-heading">お茶の知識が<br>
+        ある人も、<br>
+        そうでない人も</h2>
+        <p class="concept-text">お茶の事をたくさん知っている人は、<br>
+        その日々の生活や豆知識を投稿してみましょう！<br>
+            あまり知らない、という人は、他の人の投稿を検索したり、<br>
+            困ったことや知りたい事を投稿してコメントをもらい、<br>
+            お茶の知識をもらいましょう！</p>
+      </div>
+      <div class="col-xs-5">
+        <%= image_tag "img/istockphoto-876524244-170x170.jpg",:alt => 'tea',size: '400x400',class: "border_radius" %>
+      </div>
+    </div>
+      <div class="read-more"><%= link_to '>>Read more',homes_about_path,class: "btn btn-success" %></div>
+        <div class="rank">
+          <h2>Ranking</h2>
+          <div class="rank-post">
+            <%= render 'posts/rank',all_ranks: @all_ranks %>
+            <%= link_to '>>Read more',rank_path,class: "btn btn-success" %>
+          </div>
+        </div>
+    </div>
+  </main>

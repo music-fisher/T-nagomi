@@ -1,0 +1,29 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post{
+  // display: flex;
+  // flex-wrap: wrap;
+  display: inline-block;
+  // float: left;
+  border: ridge 5px #EEEEEE
+}
+.sidebar{
+border: ridge 5px #EEEEEE
+}
+.tag{
+    background-color:#f96781;
+    margin: 15px;
+    padding: 5px 5px 5px 10px;
+    position: relative;
+}
+
+h3{
+    font-size:20px;
+	background: linear-gradient(transparent 60%, #FAE438 60%);
+}
+
+.rank-post{
+    margin: 5px 10px;
+}

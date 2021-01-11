@@ -1,0 +1,80 @@
+<div class="container">
+    <div id="flash_message">
+        <%= render 'layouts/flash_message' %>
+    </div>
+    <div id="error_message">
+        <%= render 'layouts/error_message',resource: @comment %>
+    </div>
+    <h2 style="text-align:center;"><%= @post.title %></h2>
+    <div class="row">
+        <div class="col-xs-4">
+        <table class="table">
+            <tr>
+            <td>
+                <%= attachment_image_tag @user, :profile_image, format: 'jpeg',fallback: "noimage_user.jpg",class: "img-circle",size: "100x100"  %>
+                <%= link_to @post.user.name,user_path(@post.user) %>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                投稿日時：<%= @post.created_at.strftime("%Y-%m-%d %H:%M") %>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                お茶の種類：<%= @post.kind %>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                タグ：
+                <% @post_tags.each do |tag| %>
+                <span class="tag border_radius">
+                    <%= link_to tag.tag_name,tag_posts_path(tag_id: tag.id),class: "tag-content" %>
+                </span>
+                <% end %>
+            </td>
+            </tr>
+        </table>
+        </div>
+        <div class="col-xs-4">
+            <%= attachment_image_tag @post, :post_image, format: 'jpeg',fallback: "noimage.jpg",class: "img-rounded",size:"180x200" %>
+            <div class="post-icon">
+                <span id="likes_buttons_<%= @post.id %>">
+                    <%= render 'likes/like',post: @post %>
+                </span>
+                <span class="comment-icon">
+                <%= link_to post_path(@post) do %>
+                  <i class="far fa-comments"></i>
+                  <%= @post.comments.count %>
+                <% end %>
+                </span>
+                <span>
+                  <%= render 'posts/bookmark',post: @post %>
+                </span>
+            </div>
+            <% if current_user.id == @post.user_id %>
+                <%= link_to '編集する',edit_post_path(@post),class: "btn-primary btn-sm" %>
+                <%= link_to '削除する',post_path(@post),method: :delete,data: {confirm: '削除しますか？'},class: "btn-danger btn-sm" %>
+            <% end %>
+        </div>
+        <div class="post-body col-xs-4">
+            <%= @post.body %>
+        </div>
+    </div>
+    <!--コメント一覧-->
+        <h3>Comment<span style="font-size: 20px;"> 全<%= @post.comments.count %>件</span></h3>
+        <div class="post-comments">
+            <%= render 'comments/index', post: @post %>
+        </div>
+    <!--コメント入力-->
+        <div class="row">
+            <div class="col-sm-12">
+                 <%= form_with(model:[@post, @comment],remote: true) do |f| %>
+                    <%= f.text_area :comment_content,rows: '5',placeholder: 'コメントを入力してください',class: "form-control", id: "InputTextarea" %>
+                    <%= f.submit 'コメントする',class: "btn btn-warning btn-sm pull-right" %>
+                 <% end %>
+            </div>
+        </div>
+</div>
+

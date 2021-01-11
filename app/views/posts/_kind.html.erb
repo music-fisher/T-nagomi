@@ -1,0 +1,6 @@
+<!--kind検索-->
+<%= form_with url: posts_path, method: 'get', local: true do |f| %>
+  <h3>Teas Kind</h3>
+  <%= f.select :kind,["抹茶", "玉露", "煎茶", "番茶", "その他"] %>
+  <%= f.submit '検索する' %>
+<% end %>

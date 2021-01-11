@@ -1,0 +1,19 @@
+<div class="container">
+  <%= render 'layouts/flash_message' %>
+  <h2 style="text-align: center;">Teas all</h2>
+  <div class="row">
+    <div class="col-xs-2 sidebar">
+      <%= render 'posts/kind',post: @post %>
+      <%= render 'posts/tag_list',tag_list: @tag_list %>
+    </div>
+      <div class="col-xs-8">
+        <%= render 'posts/post_index',posts: @posts, user: @user %>
+      </div>
+      <div class="col-md-2 rank">
+        <h3>Ranking</h3>
+          <%= render 'posts/rank',all_ranks: @all_ranks %>
+          <%= link_to '>>Read more',rank_path,class: "btn btn-warning btn-sm" %>
+      </div>
+
+  </div>
+</div>

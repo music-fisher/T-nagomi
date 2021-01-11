@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Bookmark all</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'posts/kind',post: @post %>
+      <%= render 'posts/tag_list',tag_list: @tag_list %>
+    </div>
+    <div class="col-md-9">
+      <%= render 'posts/post_index',posts: @posts, user: @user %>
+    </div>
+    <%= paginate @posts %>
+  </div>
+</div>

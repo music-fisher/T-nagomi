@@ -1,0 +1,73 @@
+ <div class="container">
+   <div class="row">
+     <h2>Ranking all<span style="font-size: 20px;">（いいねが多い順）</span></h2>
+      <!--ランキング一覧表示-->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ranking</th>
+            <th>User</th>
+            <th>Post</th>
+            <th>Title</th>
+            <th>Kind</th>
+            <th>Tag</th>
+            <th>Day</th>
+            <th width="20%;">Icon</th>
+          </tr>
+        </thead>
+      <% @all_ranks.each do |post| %>
+        <tr>
+          <td>第<%= post.rank %>位</td>
+          <td class="user-body">
+            <%= link_to user_path(post.user.id) do %>
+            <%= attachment_image_tag post.user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
+            <% end %>
+            <%= link_to post.user.name,user_path(post.user.id) %>
+          </td>
+          <td class="tea-body">
+            <%= link_to post_path(post) do %>
+              <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "100x100" %>
+            <% end %>
+          </td>
+          <td  class="post-title">
+             <%= link_to post.title,post_path(post) %>
+          </td>
+          <td>
+            <%= post.kind %>
+          </td>
+          <td>
+            <% post.tags.each do |tag| %>
+              <div class="tag border_radius">
+                  <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id), class: "tag-content" %>
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </td>
+          <!--アイコン-->
+          <% if user_signed_in? %>
+            <td class="post-icon" width="20%;">
+              <span id="likes_buttons_<%= post.id %>">
+                <%= render 'likes/like',post: post %>
+              </span>
+              <span class="comment-icon">
+                <%= link_to post_path(post) do %>
+                  <i class="far fa-comments"></i>
+                  <%= post.comments.count %>
+                <% end %>
+              </span>
+              <span>
+              <%= render 'posts/bookmark',post: post %>
+              </span>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+    <!--ページネーション -->
+    <div class="pagination">
+      <%= paginate @all_ranks %>
+    </div>
+  </div>
+</div>

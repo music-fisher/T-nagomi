@@ -1,0 +1,33 @@
+ <header>
+  <div class="container">
+    <div class="row">
+      <nav>
+          <ul class="nav-item nav navbar-nav navbar-right">
+            <!--ログインしているとき-->
+            <% if user_signed_in? %>
+              <li><%= link_to "Top",root_path %></li>
+              <li><%= link_to "How to use",homes_about_path %></li>
+              <li><%= link_to "Teas",posts_path %></li>
+              <li><%= link_to "Users",users_path %></li>
+              <li><%= link_to "NewPost",new_post_path %></li>
+              <li><%= link_to "MyPage",user_path(current_user) %></li>
+              <li><%= link_to "Ranking",rank_path %></li>
+              <li><%= link_to "Logout",destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Top",root_path %></li>
+              <li><%= link_to "How to use",homes_about_path %></li>
+              <li><%= link_to "Teas",posts_path %></li>
+              <li><%= link_to "Sign_up",new_user_registration_path %></li>
+              <li><%= link_to "Sign_in",new_user_session_path %></li>
+            <% end %>
+          </ul>
+          <% if user_signed_in? && request.path != root_path && request.path != homes_about_path %>
+            <%= search_form_for search, url: posts_path do |f| %>
+              <%= f.text_field :title_cont,placeholder: '🔍テキストを入力..',class: 'search-btn' %>
+              <%= f.submit '検索する' %>
+            <% end %>
+          <% end %>
+      </nav>
+    </div>
+  </div>
+</header>
