@@ -63,9 +63,8 @@
         </div>
     </div>
     <!--コメント一覧-->
-            <h3>Comment</h3>
+        <h3>Comment<span style="font-size: 20px;"> 全<%= @post.comments.count %>件</span></h3>
         <div class="post-comments">
-            <p>全<%= @post.comments.count %>件</p>
             <%= render 'comments/index', post: @post %>
         </div>
     <!--コメント入力-->
