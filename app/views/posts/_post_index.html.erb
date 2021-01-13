@@ -15,7 +15,7 @@
       <tr>
         <td class="user-body">
           <%= link_to user_path(post.user.id) do %>
-          <%= attachment_image_tag user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
+          <%= attachment_image_tag post.user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
           <% end %>
           <%= link_to post.user.name,user_path(post.user.id) %>
         </td>

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @posts = if !@search_posts.nil?
                @search_posts
              elsif params[:kind].present?
-               Post.where(kind: params[:kind]).includes(:user).page(params[:page]).per(8)
+               Post.where(kind: params[:kind]).includes(:user).page(params[:page]).per(5)
              else
                Post.all.includes(:user).page(params[:page]).per(5)
              end

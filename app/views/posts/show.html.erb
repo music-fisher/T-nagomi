@@ -38,7 +38,7 @@
         </table>
         </div>
         <div class="col-xs-4">
-            <%= attachment_image_tag @post, :post_image, format: 'jpeg',fallback: "noimage.jpg",class: "img-rounded",size:"180x200" %>
+            <%= attachment_image_tag @post, :post_image, format: 'jpeg',fallback: "noimage.jpg",class: "img-rounded",size:"300x300" %>
             <div class="post-icon">
                 <span id="likes_buttons_<%= @post.id %>">
                     <%= render 'likes/like',post: @post %>
@@ -59,7 +59,7 @@
             <% end %>
         </div>
         <div class="post-body col-xs-4">
-            <%= @post.body %>
+            <%= simple_format(@post.body) %>
         </div>
     </div>
     <!--コメント一覧-->
