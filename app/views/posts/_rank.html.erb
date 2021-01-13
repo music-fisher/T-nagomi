@@ -3,7 +3,7 @@
     第<%=  i  %>位
     <div class="tea-body">
       <%= link_to post_path(post) do %>
-        <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "180x200" %>
+        <%= attachment_image_tag post, :post_image, format: 'jpeg',fallback: 'noimage.jpg',size: "180x180",class: "border_radius" %>
       <% end %>
       <div class="post-title">
         <%= link_to post.title,post_path(post) %>
@@ -15,7 +15,7 @@
     </div>
       <% end %>
       <!--ログインしている時のみアイコン表示-->
-    <% if user_signed_in? %>  
+    <% if user_signed_in? %>
       <div class="post-icon">
         <span id="likes_buttons_<%= post.id %>">
           <%= render 'likes/like',post: post %>
