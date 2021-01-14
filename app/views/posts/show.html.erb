@@ -35,6 +35,11 @@
                 <% end %>
             </td>
             </tr>
+            <tr>
+            <td>
+                <%= render 'users/follow_btn',user: @user %>
+            </td>
+            </tr>
         </table>
         </div>
         <div class="col-xs-4">
@@ -62,6 +67,7 @@
             <%= simple_format(@post.body) %>
         </div>
     </div>
+            <%= link_to 'Back', posts_path,class: "btn-warning btn-sm pull-right" %>
     <!--コメント一覧-->
         <h3>Comment<span style="font-size: 20px;"> 全<%= @post.comments.count %>件</span></h3>
         <div class="post-comments">

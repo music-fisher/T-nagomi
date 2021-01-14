@@ -3,4 +3,9 @@
     <h2>Fllow User all</h2>
     <%= render 'users/index', users: @users %>
   </div>
+  <!--ページネーション -->
+  <div class="pagination">
+    <%= paginate @users %>
+  </div>
+   <%= link_to 'Back', posts_path,class: "btn-warning btn-sm pull-right" %>
 </div>

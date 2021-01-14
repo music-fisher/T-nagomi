@@ -2,5 +2,10 @@
   <div class="row">
     <h2>User一覧</h2>
      <%= render 'users/index', users: @users %>
+         <!--ページネーション -->
+      <div class="pagination">
+        <%= paginate @users %>
+      </div>
+     <%= link_to 'Back', posts_path,class: "btn-warning btn-sm pull-right" %>
   </div>
 </div>
