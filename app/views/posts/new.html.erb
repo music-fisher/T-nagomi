@@ -14,22 +14,24 @@
         <%= render 'layouts/preview' %>
     <!--ここまで-->
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="row">
-        <%= f.label :"タイトル",class: "col-md-4" %>
+        <%= f.label :"タイトル",class: "col-md-2" %>
         <%= f.text_field :title,class: "col-md-4" %>
       </div>
       <div class="row">
-        <%= f.label :"お茶の種類",class: "col-md-4" %>
+        <%= f.label :"お茶の種類",class: "col-md-2" %>
         <%= f.select :kind, ["抹茶", "玉露", "煎茶", "番茶", "その他"],prompt: "お茶の種類を選択してください",class: "col-md-4" %>
       </div>
       <div class="row">
-        <%= f.label :"タグ",class: "col-md-4" %>
+        <%= f.label :"タグ",class: "col-md-2" %>
         <%= f.text_field :tag_name,placeholder:"例）豆知識,お悩み,日常,相談",class: "col-md-4" %>
-        ※複数登録する際は「,」または「、」で区切ってください。
       </div>
       <div class="row">
-        <%= f.label :"本文",class: "col-md-4" %>
+       <p> ※複数登録する際は「,」または「、」で区切ってください。</p>
+      </div>
+      <div class="row">
+        <%= f.label :"本文",class: "col-md-2" %>
         <%= f.text_area :body,placeholder:"800字以内",size: "30x10",class: "col-md-4" %>
       </div>
       <div class="row">
@@ -37,5 +39,19 @@
       </div>
     </div>
     <% end %>
+    <!--タグ例文言追加-->
+    <div class="tag_about col-md-2">
+      <h3><ul><strong>タグの付け方例</strong></ul></h3>
+        <li><strong>日常：</strong>毎日の暮らしの投稿に</li>
+        <li><strong>お悩み：</strong>お茶の淹れ方や選び方を聞きたい時に</li>
+        <li><strong>おすすめ：</strong>みんなと共有したい時</li>
+        <li><strong>豆知識：</strong>お茶のプチ情報の共有に！</li>
+        <li><strong>食べ合わせ：</strong>お菓子との食べ合わせの投稿に</li>
+        <li><strong>お土産：</strong>お土産でもらった、あげる、など</li>
+        <li><strong>淹れ方：</strong>淹れ方の紹介や、聞きたい時に！</li>
+        <li><strong>保存方法：</strong>紹介するときでも、聞きたい時でも！</li>
+        <li><strong>友人：</strong>友達とのひとときに</li>
+        <p>などなど、組み合わせてタグを活用しましょう！</p>
+    </div>
   </div>
 </div>
