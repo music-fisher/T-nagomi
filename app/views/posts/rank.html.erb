@@ -15,9 +15,9 @@
             <th width="20%;">Icon</th>
           </tr>
         </thead>
-      <% @all_ranks.each do |post| %>
+      <% @all_ranks.each.with_index(1) do |post,i|%>
         <tr>
-          <td>第<%= post.rank %>位</td>
+          <td>第<%= i+@page_offset %>位</td>
           <td class="user-body">
             <%= link_to user_path(post.user.id) do %>
             <%= attachment_image_tag post.user, :profile_image, format: 'jpeg',class: "img-circle profile-img",fallback: 'noimage_user.jpg', size: "60x60" %>
@@ -67,7 +67,7 @@
     </table>
     <!--ページネーション -->
     <div class="pagination">
-      <%= paginate @all_ranks %>
+      <%= paginate @pages %>
     </div>
       <%= link_to 'Back', posts_path,class: "btn-warning btn-sm pull-right" %>
   </div>

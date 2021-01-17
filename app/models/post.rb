@@ -13,9 +13,6 @@ class Post < ApplicationRecord
   validates :title, presence: true,length: { maximum: 20 }
   validates :body, presence: true,length: { maximum: 800 }
 
-  scope :ranking, -> {
-    where(id: Like.group(:post_id).order('count(post_id) desc').select(:post_id))
-  }
 
   def save_post(savepost_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -41,8 +38,4 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
-  def rank
-    ranking_ids = Post.ranking.pluck(:id)
-    ranking_ids.index(id) + 1
-  end
 end

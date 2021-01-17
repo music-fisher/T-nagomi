@@ -77,7 +77,19 @@ class PostsController < ApplicationController
   end
 
   def rank
-    @all_ranks = Post.ranking.page(params[:page]).per(5)
+    # @all_ranks = Post.ranking.page(params[:page]).per(5)
+    limit = 5
+    rank_ids = Like.group(:post_id).order('count(post_id) desc').page(params[:page]).per(limit).pluck(:post_id)
+    @all_ranks = Post.find(rank_ids)
+
+    @pages = Like.group(:post_id).order('count(post_id) desc').page(params[:page]).per(limit)
+
+    if params[:page].to_i == 1 || params[:page].nil?
+      @page_offset = 0
+    else
+      @page_offset = (params[:page].to_i - 1) * limit
+    end
+    
   end
 
   private

@@ -27,10 +27,17 @@ describe '投稿管理機能',type: :system do
   end
 
   #   describe '詳細表示機能' do
-  #     context 'ユーザーAがログインしている時' do
-  #       let(:login_user){user_a}
   #     before do
-  #       visit post_path(post_a)
+  #       user_a = FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')
+  #       FactoryBot.create(:post, title: '最初の投稿', user: user_a)
+  #     end
+  #     context 'ユーザーAがログインしている時' do
+  #     before do
+  #       visit user_session_path
+  #       fill_in 'メールアドレス', with: 'a@example.email'
+  #       fill_in 'パスワード', with: 'password'
+  #       click_button 'Log in'
+  #       visit post_path(user_a.post)
   #     end
   #     it'ユーザーが作成した投稿が表示される'do
   #       expect(page).to heve_content '最初の投稿'
