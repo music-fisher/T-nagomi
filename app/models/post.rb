@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :notifications, dependent: :destroy
 
   attachment :post_image
   enum kind: {抹茶: 0,玉露: 1, 煎茶: 2,番茶: 3, その他: 4}
