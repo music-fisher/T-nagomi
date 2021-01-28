@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.post_id = @post.id
     if @comment.save
+      # 通知機能
+      @comment.post_id.create_notification_comment!(current_user, @comment.id)
+      # render??
+      render :index
       flash[:notice]="コメントを投稿しました。"
     else
       flash[:alert]="コメントの投稿に失敗しました。"

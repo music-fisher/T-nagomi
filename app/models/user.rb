@@ -41,5 +41,17 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
+  # フォロー通知機能
+  def create_notification_follow!(current_user)
+    # すでに通知されているか確認
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ?"],current_user.id,id,'follow')
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+        )
+      notification.save if notification.valid?
+    end
+  end
 
 end
