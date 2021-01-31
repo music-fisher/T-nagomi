@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   # 通知機能
   has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id",dependent: :destroy
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "visiter_id",dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id",dependent: :destroy
 
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   # フォロー機能
   def follow(user_id)
-    relationship = relationships.new(followed_id: user_id)
+    relationship = relationships.new(followed_id: user_id.id)
     relationship.save
   end
   def unfollow(user_id)
@@ -44,7 +44,7 @@ class User < ApplicationRecord
   # フォロー通知機能
   def create_notification_follow!(current_user)
     # すでに通知されているか確認
-    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ?"],current_user.id,id,'follow')
+    temp = Notification.where("visiter_id = ? and visited_id = ? and action = ?",current_user.id,id,'follow')
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,

@@ -55,17 +55,17 @@ class Post < ApplicationRecord
     # 誰もコメントしてないときは、投稿者に通知を送る
       save_notification_comment!(current_user,comment_id,user_id) if temp_ids.blank?
   end
-  def save_notification_comment(current_user,comment_id,visited_id)
-    current_user.active_notifications.new(
+  def save_notification_comment!(current_user,comment_id,visited_id)
+    notification = current_user.active_notifications.new(
       post_id: id,
       comment_id: comment_id,
       visited_id: visited_id,
       action: 'comment'
       )
     # 自分に対してのコメントであれば通知すみにする
-    if notification.visiter_id == notification.visited_id
-        notification.checked = true
-    end
+    # if notification.visiter_id == notification.visited_id
+    #     notification.checked = true
+    # end
     notification.save if notification.valid?
   end
 end

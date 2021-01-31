@@ -5,11 +5,10 @@ class LikesController < ApplicationController
     like = current_user.likes.new(post_id: @post.id)
     like.save
     # 通知機能追加
-    @post.create_notification_by(current_user)
-    respond_to do |format|
-      format.html{redirect_to request.referrer}
-      format.js
+    if @post.user != current_user
+     @post.create_notification_by(current_user)
     end
+    redirect_to request.referrer
   end
   def destroy
     @post = Post.find(params[:post_id])

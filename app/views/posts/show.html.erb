@@ -76,7 +76,7 @@
     <!--コメント入力-->
         <div class="row">
             <div class="col-sm-12">
-                 <%= form_with(model:[@post, @comment],remote: true) do |f| %>
+                 <%= form_with(model:[@post, @comment],url: post_comments_path(post_id: @post.id), remote: true) do |f| %>
                     <%= f.text_area :comment_content,rows: '5',placeholder: 'コメントを入力してください',class: "form-control", id: "InputTextarea" %>
                     <%= f.submit 'コメントする',class: "btn btn-warning btn-sm pull-right" %>
                  <% end %>

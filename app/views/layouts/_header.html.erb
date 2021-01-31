@@ -12,6 +12,11 @@
               <li><%= link_to "NewPost",new_post_path %></li>
               <li><%= link_to "MyPage",user_path(current_user) %></li>
               <li><%= link_to "Ranking",rank_path %></li>
+              <!--未確認の通知があればマークをつける-->
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+              <li><%= link_to "Notice",notifications_path %></li>
               <li><%= link_to "Logout",destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "Top",root_path,data: {"turbolinks" => false} %></li>
