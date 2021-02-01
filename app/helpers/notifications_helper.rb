@@ -6,12 +6,12 @@ module NotificationsHelper
     # notification.actionがどの値か
     case notification.action
       when "follow" then
-        tag.a(notification.visiter.name, href: user_path(@visiter))+"があなたをフォローしました"
+        tag.a(notification.visiter.name, href: user_path(@visiter), style:"font-weight: bold; color: #0099CC;")+"があなたをフォローしました"
       when "like" then
-        tag.a(notification.visiter.name, href: user_path(@visiter))+"が"+tag.a('あなたの投稿', href: post_path(notification.post_id))+"にいいねしました"
+        tag.a(notification.visiter.name, href: user_path(@visiter), style:"font-weight: bold;  color: #0099CC;")+"が"+tag.a('あなたの投稿', href: post_path(notification.post_id), style:"font-weight: bold; color: #0099CC;")+"にいいねしました"
       when "comment" then
         @comment = Comment.find_by(id: @visiter_comment)&.comment_content
-        tag.a(@visiter.name, href: user_path(@visiter))+"が"+tag.a('あなたの投稿', href: post_path(notification.post_id))+"にコメントしました"
+        tag.a(@visiter.name, href: user_path(@visiter), style:"font-weight: bold; color: #0099CC;")+"が"+tag.a('あなたの投稿', href: post_path(notification.post_id), style:"font-weight: bold; color: #0099CC;")+"にコメントしました"
     end
   end
   # 未確認の通知はマークで知らせる

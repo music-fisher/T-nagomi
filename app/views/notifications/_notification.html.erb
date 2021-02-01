@@ -7,7 +7,7 @@
     <% end %>
     <%= notification_form(notice) %><span class="moderate-font"><%= "(#{time_ago_in_words(notice.created_at)})前" %></span>
     <% if !@comment.nil? %>
-      <p class="moderate-font"><%= @comment %></p>
+      <p style= "color: #C0C0C0;"><%= @comment %></p>
     <% end %>
   </div>
 <% end %>

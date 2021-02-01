@@ -62,10 +62,6 @@ class Post < ApplicationRecord
       visited_id: visited_id,
       action: 'comment'
       )
-    # 自分に対してのコメントであれば通知すみにする
-    # if notification.visiter_id == notification.visited_id
-    #     notification.checked = true
-    # end
     notification.save if notification.valid?
   end
 end
