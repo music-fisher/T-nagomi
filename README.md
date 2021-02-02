@@ -30,6 +30,12 @@
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1A6eheHe_Ui2o6Oc36WrN9tOAWXASq-N4I9LUdH3Vjog/edit#gid=0
+### 画面設計/ER図
+https://app.diagrams.net/#G15bGIPus__y-4LViUH4E7i2DPliOuI48j
+### AWS構成図
+https://app.diagrams.net/#G19di4mJ5DdoRjUKl9xFDHsoN2UORmMZmv
+### AWSインフラ設計書
+https://docs.google.com/spreadsheets/d/1g0x0lj_7XzeMg8SEO6GBgYRuns4_xh8jfIgGsjTo3TE/edit#gid=0
 
 ## 開発環境
 - OS：Linux(CentOS)
