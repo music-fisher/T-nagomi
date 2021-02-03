@@ -1,9 +1,9 @@
 <% if post.bookmark_by?(current_user) %>
   <%= link_to post_bookmarks_path(post.id),method: :delete do %>
-    <i class="fas fa-bookmark" aria-hidden="true" style="color: #FF8C00";></i>
+    <i class="fas fa-bookmark faa-bounce animated-hover bookmark-icon" aria-hidden="true"></i>
   <% end %>
 <% else %>
   <%= link_to post_bookmarks_path(post.id),method: :post do %>
-    <i class="far fa-bookmark" aria-hidden="true"></i>
-  <% end %>  
+    <i class="far fa-bookmark faa-bounce animated-hover bookmark-icon" aria-hidden="true"></i>
+  <% end %>
 <% end %>

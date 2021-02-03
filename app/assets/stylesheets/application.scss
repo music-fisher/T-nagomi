@@ -48,6 +48,10 @@ header{
 nav ul li a{
   color: #fff;
 }
+.n-circle{
+  position: absolute;
+  padding-left: 1rem;
+}
 footer {
   width: 100%;
   height: 60px;
@@ -119,4 +123,11 @@ th{
 // ページネーション
 .pagination{
   text-align: center;
+}
+// アイコン
+.comment-icon{
+  color: #00BFFF;
+}
+.bookmark-icon{
+  color: #FF9933;
 }

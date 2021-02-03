@@ -2,12 +2,12 @@
 <% if user_signed_in? %>
   <% if post.liked_by?(current_user) %>
     <%= link_to post_likes_path(post),method: :delete,remote: true do %>
-      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <i class="fas fa-heart faa-pulse animated-hover" aria-hidden="true" style="color: red;"></i>
       <%= post.likes.count %>
     <% end %>
   <% else %>
     <%= link_to post_likes_path(post),method: :post,remote: true do %>
-      <i class="far fa-heart" aria-hidden="true" ></i>
+      <i class="far fa-heart faa-pulse animated-hover" aria-hidden="true" ></i>
       <%= post.likes.count %>
     <% end %>
   <% end %>
