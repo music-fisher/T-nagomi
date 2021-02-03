@@ -1,0 +1,21 @@
+ <div class="container">
+   <div class="row">
+    <h2>Notification</h2>
+    <div class="col-xs-8 col-xs-offset-2">
+      <!--削除機能-->
+      <%= link_to notification_path(@notifications), method: :delete do %>
+        <i class="fas fa-trash-alt"></i>
+        <h7>全削除</h7>
+      <% end %>
+      <!--通知一覧-->
+      <% if @notifications.exists? %>
+        <div class="users-index">
+          <%= render 'notification',notification: @notifications %>
+        </div>
+      <% else %>
+        <p>通知はありません</p>
+      <% end %>
+      <%= paginate @notifications %>
+    </div>
+  </div>
+</div>

@@ -50,7 +50,7 @@
                 </span>
                 <span class="comment-icon">
                 <%= link_to post_path(@post) do %>
-                  <i class="far fa-comments"></i>
+                  <i class="far fa-comments faa-wrench animated-hover comment-icon"></i>
                   <%= @post.comments.count %>
                 <% end %>
                 </span>
@@ -67,7 +67,7 @@
             <%= simple_format(@post.body) %>
         </div>
     </div>
-            <%= link_to 'Back', posts_path,class: "btn-warning btn-sm pull-right" %>
+            <%= link_to 'Back', :back,class: "btn-warning btn-sm pull-right" %>
     <!--コメント一覧-->
         <h3>Comment<span style="font-size: 20px;"> 全<%= @post.comments.count %>件</span></h3>
         <div class="post-comments">
@@ -76,7 +76,7 @@
     <!--コメント入力-->
         <div class="row">
             <div class="col-sm-12">
-                 <%= form_with(model:[@post, @comment],remote: true) do |f| %>
+                 <%= form_with(model:[@post, @comment],url: post_comments_path(post_id: @post.id), remote: true) do |f| %>
                     <%= f.text_area :comment_content,rows: '5',placeholder: 'コメントを入力してください',class: "form-control", id: "InputTextarea" %>
                     <%= f.submit 'コメントする',class: "btn btn-warning btn-sm pull-right" %>
                  <% end %>

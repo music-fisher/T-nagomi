@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get 'posts', to:"posts#search"
   end
   get '/rank' => 'posts#rank'
+  resources :notifications, only: [:index, :destroy]
   # ゲストログイン
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'

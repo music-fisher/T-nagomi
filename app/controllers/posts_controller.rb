@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
-    @posts = Post.all.includes(:user).page(params[:page]).per(5)
+    # @posts = Post.all.includes(:user).page(params[:page]).per(5)
     @comment = Comment.new
     @user = User.find(@post.user_id)
   end

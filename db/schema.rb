@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_114143) do
+ActiveRecord::Schema.define(version: 2021_01_23_144129) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 2020_12_22_114143) do
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "post_id"
+    t.integer "comment_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
