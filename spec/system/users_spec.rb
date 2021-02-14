@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User管理機能', type: :system do
  let!(:user_a){FactoryBot.build(:user, name: 'ユーザーA', email: 'a@example.com')}
- #let(:user_b){FactoryBot.build(:user, name: 'ユーザーB', email: 'b@example.com')}
+ let!(:user_b){FactoryBot.create(:user, name: 'ユーザーB', email: 'b@example.com')}
  let!(:user){FactoryBot.create(:user)}
   # before do
   #   visit user_session_path
@@ -35,6 +35,15 @@ describe 'User管理機能', type: :system do
           expect(page).to have_content 'Eメールを入力してください'
         end
       end
+      context 'メールが重複している' do
+        it '新規登録に失敗する' do
+          visit new_user_registration_path
+          fill_in 'user[email]',with: user.email
+          fill_in 'user[password]',with: 'password'
+          click_button '上記内容で登録する'
+          expect(page).to have_content 'Eメールはすでに存在します'
+        end
+      end
     end
     describe 'ログイン機能'do
       context 'ログインの入力値が正しい'do
@@ -46,12 +55,13 @@ describe 'User管理機能', type: :system do
           expect(page).to have_content 'ログインしました'
         end
       end
-      context 'メールが重複している' do
-        it 'ログインに失敗する' do
-        end
-      end
       context 'パスワードが空白' do
         it 'ログインに失敗する' do
+          visit user_session_path
+          fill_in 'user[email]',with: user.email
+          fill_in 'user[password]',with: ''
+          click_button 'Log in'
+          expect(current_path).to eq user_session_path
         end
       end
     end
