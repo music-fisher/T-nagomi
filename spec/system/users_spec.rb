@@ -4,12 +4,6 @@ describe 'User管理機能', type: :system do
  let!(:user_a){FactoryBot.build(:user, name: 'ユーザーA', email: 'a@example.com')}
  let!(:user_b){FactoryBot.create(:user, name: 'ユーザーB', email: 'b@example.com')}
  let!(:user){FactoryBot.create(:user)}
-  # before do
-  #   visit user_session_path
-  #   fill_in 'Email', with: user.email
-  #   fill_in 'Password', with: user.password
-  #   click_button 'Log in'
-  # end
   describe 'ログイン前' do
     describe '新規登録機能'do
       context '入力値が正しい'do
@@ -67,9 +61,15 @@ describe 'User管理機能', type: :system do
     end
   end
   describe 'ログイン後'do
+    # モジュールに切り出したログインメソッド呼び出し
+    before {login(user)}
     describe '編集機能'do
       context '入力値が正しい'do
         it 'ユーザ情報の編集に成功する'do
+          visit edit_user_path(user)
+          fill_in 'user[introduction]',with: 'よろしくお願いします！'
+          click_button '変更を保存する'
+          expect(page).to have_content 'プロフィールを編集しました。'
         end
       end
     end
