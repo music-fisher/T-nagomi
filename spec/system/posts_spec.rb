@@ -15,10 +15,7 @@ describe '投稿管理機能',type: :system do
   describe '一覧表示' do
     context 'ログインしている時' do
       before do
-      #   visit user_session_path
-      #   fill_in 'Email', with: user_a.email
-      #   fill_in 'Password', with: user_a.password
-      #   click_button 'Log in'
+
         visit posts_path
       end
       it 'ログインユーザーの作成した投稿が表示される' do
